@@ -1,0 +1,983 @@
+<!doctype html>
+
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Platafor mas IA Para Empresas.</title>
+    <meta
+      content="Generamos software a medida implementando herramientas de IA; puntos de venta, tiendas on-line, agentes IA, ChatBots, sistemas de venta."
+      name="description"
+    />
+    <meta
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+      name="robots"
+    />
+    <meta content="IA Softworks MX" name="author" />
+    <meta content="#101010" name="theme-color" />
+    <meta content="website" property="og:type" />
+    <meta content="es_MX" property="og:locale" />
+    <meta content="IA Softworks MX" property="og:site_name" />
+    <meta content="Plataformas IA Para Empresas." property="og:title" />
+    <meta
+      content="Generamos software a medida implementando herramientas de IA; puntos de venta, tiendas on-line, agentes IA, ChatBots, sistemas de venta."
+      property="og:description"
+    />
+    <meta content="assets/chatbots-ia.png" property="og:image" />
+    <meta
+      content="Chatbots con inteligencia artificial"
+      property="og:image:alt"
+    />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta content="assets/chatbots-ia.png" name="twitter:image" />
+    <meta
+      content="Chatbots con inteligencia artificial"
+      name="twitter:image:alt"
+    />
+    <meta content="Plataformas IA Para Empresas." name="twitter:title" />
+    <meta
+      content="Generamos software a medida implementando herramientas de IA; puntos de venta, tiendas on-line, agentes IA, ChatBots, sistemas de venta."
+      name="twitter:description"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "IA Softworks MX",
+        "email": "alan_aarm@hotmail.com",
+        "telephone": "+52-55-3413-7179",
+        "address": [
+          {
+            "@type": "PostalAddress",
+            "streetAddress": "Calle 20 de Noviembre No. 45, Santiago Tezoyuca",
+            "addressLocality": "Estado de México",
+            "postalCode": "56000",
+            "addressCountry": "MX"
+          },
+          {
+            "@type": "PostalAddress",
+            "streetAddress": "Otavalo número 91, Colonia Lindavista, Gustavo A. Madero",
+            "addressLocality": "Ciudad de México",
+            "addressCountry": "MX"
+          },
+          {
+            "@type": "PostalAddress",
+            "streetAddress": "Avenida 125 Oriente #226, Guadalupe Hidalgo",
+            "addressLocality": "Puebla",
+            "postalCode": "72494",
+            "addressCountry": "MX"
+          }
+        ],
+        "sameAs": ["https://wa.me/525534137179"]
+      }
+    </script>
+    <link href="styles.css" rel="stylesheet" />
+    <style id="mapa-ia-estilos">
+      /* Mapa mental integrado en el hero */
+      .hero-visual {
+        min-width: 0;
+      }
+
+      .mapa-ia {
+        --map-bg: #faf9f5;
+        --map-ink: #141413;
+        --map-muted: #5d5c57;
+        --map-orange: #d97757;
+        --map-blue: #6a9bcc;
+        --map-green: #788c5d;
+        --map-border: rgba(20, 20, 19, 0.2);
+        --map-line: rgba(20, 20, 19, 0.32);
+
+        position: relative;
+        width: 100%;
+        min-height: 590px;
+        overflow: hidden;
+        border: 1px solid var(--map-border);
+        border-radius: 18px;
+        background:
+          radial-gradient(
+            circle at 80% 15%,
+            rgba(217, 119, 87, 0.13),
+            transparent 27%
+          ),
+          radial-gradient(
+            circle at 12% 82%,
+            rgba(106, 155, 204, 0.13),
+            transparent 27%
+          ),
+          radial-gradient(
+            circle at 62% 72%,
+            rgba(120, 140, 93, 0.11),
+            transparent 28%
+          ),
+          var(--map-bg);
+        box-shadow: 0 24px 70px rgba(20, 20, 19, 0.12);
+        isolation: isolate;
+      }
+
+      .mapa-ia::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background-image:
+          linear-gradient(rgba(20, 20, 19, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(20, 20, 19, 0.035) 1px, transparent 1px);
+        background-size: 38px 38px;
+        mask-image: radial-gradient(
+          circle at center,
+          #000 25%,
+          transparent 86%
+        );
+        pointer-events: none;
+      }
+
+      .mapa-ia__conexiones {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        pointer-events: none;
+      }
+
+      .linea-conexion {
+        fill: none;
+        stroke: var(--map-line);
+        stroke-width: 1.4;
+        stroke-linecap: round;
+        transition:
+          stroke 0.22s ease,
+          stroke-width 0.22s ease,
+          opacity 0.22s ease;
+      }
+
+      .linea-conexion--activa {
+        stroke: var(--map-orange);
+        stroke-width: 2.5;
+      }
+
+      .particula-conexion {
+        fill: var(--map-orange);
+        filter: drop-shadow(0 0 4px rgba(217, 119, 87, 0.65));
+      }
+
+      .nodo {
+        --desplazamiento-x: 0px;
+        --desplazamiento-y: 0px;
+        --parallax-x: 0px;
+        --parallax-y: 0px;
+        position: absolute;
+        z-index: 3;
+        left: 0;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        min-height: 42px;
+        max-width: 190px;
+        padding: 9px 14px;
+        color: var(--map-ink);
+        font-size: clamp(0.72rem, 0.9vw, 0.9rem);
+        font-weight: 700;
+        line-height: 1.15;
+        text-align: center;
+        white-space: nowrap;
+        border: 1px solid rgba(20, 20, 19, 0.3);
+        border-radius: 999px;
+        background: rgba(250, 249, 245, 0.94);
+        box-shadow: 0 10px 27px rgba(20, 20, 19, 0.1);
+        backdrop-filter: blur(12px);
+        transform: translate(-50%, -50%)
+          translate(var(--desplazamiento-x), var(--desplazamiento-y))
+          translate(var(--parallax-x), var(--parallax-y));
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease,
+          background 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .nodo:hover,
+      .nodo:focus-visible {
+        z-index: 10;
+        color: #faf9f5;
+        border-color: var(--map-orange);
+        background: var(--map-ink);
+        box-shadow:
+          0 18px 42px rgba(20, 20, 19, 0.2),
+          0 0 0 5px rgba(217, 119, 87, 0.12);
+        outline: none;
+      }
+
+      .nodo__punto {
+        flex: 0 0 auto;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--map-orange);
+        box-shadow: 0 0 0 5px rgba(217, 119, 87, 0.13);
+      }
+
+      .nodo--tecnologia .nodo__punto {
+        width: 7px;
+        height: 7px;
+        background: var(--map-blue);
+        box-shadow: 0 0 0 5px rgba(106, 155, 204, 0.13);
+      }
+
+      .nodo--destacado {
+        border-color: rgba(217, 119, 87, 0.62);
+        background: rgba(217, 119, 87, 0.1);
+      }
+
+      .nodo--whatsapp {
+        border-color: rgba(120, 140, 93, 0.65);
+        background: rgba(120, 140, 93, 0.1);
+      }
+
+      .nodo--whatsapp .nodo__punto {
+        background: var(--map-green);
+        box-shadow: 0 0 0 5px rgba(120, 140, 93, 0.14);
+      }
+
+      .nodo__icono {
+        display: grid;
+        place-items: center;
+        width: 47px;
+        height: 47px;
+        color: #faf9f5;
+        font-weight: 900;
+        letter-spacing: -0.08em;
+        border-radius: 7px;
+        background: var(--map-orange);
+        box-shadow: 0 10px 24px rgba(217, 119, 87, 0.24);
+      }
+
+      .nodo--principal {
+        min-height: 67px;
+        max-width: 220px;
+        padding: 9px 18px 9px 10px;
+        color: #faf9f5;
+        font-size: 0.95rem;
+        border-color: var(--map-ink);
+        border-radius: 12px;
+        background: var(--map-ink);
+        box-shadow: 0 19px 44px rgba(20, 20, 19, 0.22);
+      }
+
+      .nodo--principal:hover,
+      .nodo--principal:focus-visible {
+        color: var(--map-ink);
+        background: var(--map-orange);
+      }
+
+      .nodo--principal:hover .nodo__icono,
+      .nodo--principal:focus-visible .nodo__icono {
+        color: var(--map-ink);
+        background: var(--map-bg);
+      }
+
+      .mapa-ia__decoracion {
+        position: absolute;
+        z-index: 0;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        filter: blur(14px);
+        pointer-events: none;
+        animation: mapaPulso 7s ease-in-out infinite;
+      }
+
+      .mapa-ia__decoracion--1 {
+        top: 3%;
+        right: 2%;
+        background: rgba(217, 119, 87, 0.14);
+      }
+
+      .mapa-ia__decoracion--2 {
+        bottom: 3%;
+        left: 4%;
+        background: rgba(106, 155, 204, 0.14);
+        animation-delay: -2s;
+      }
+
+      .mapa-ia__decoracion--3 {
+        top: 41%;
+        left: 41%;
+        width: 205px;
+        height: 205px;
+        background: rgba(120, 140, 93, 0.1);
+        animation-delay: -4s;
+      }
+
+      @keyframes mapaPulso {
+        0%,
+        100% {
+          opacity: 0.42;
+          transform: scale(0.88);
+        }
+
+        50% {
+          opacity: 0.82;
+          transform: scale(1.14);
+        }
+      }
+
+      @media (max-width: 1100px) {
+        .mapa-ia {
+          min-height: 620px;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .mapa-ia {
+          min-height: 650px;
+          border-radius: 12px;
+        }
+
+        .nodo {
+          max-width: 132px;
+          padding: 8px 10px;
+          font-size: 0.68rem;
+          white-space: normal;
+        }
+
+        .nodo--principal {
+          max-width: 180px;
+          min-height: 61px;
+          font-size: 0.76rem;
+        }
+
+        .nodo__icono {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .mapa-ia *,
+        .mapa-ia *::before,
+        .mapa-ia *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="index.html"
+          ><img
+            alt="IA Softworks MX"
+            decoding="async"
+            fetchpriority="high"
+            height="1086"
+            src="assets/logo-ia-softworks-mx.jpg"
+            title="IA Softworks MX"
+            width="1448"
+          />
+          <div class="brand-name">
+            IA Softworks MX<small
+              >Soluciones inteligentes. Resultados reales.</small
+            >
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Inicio</a>
+          <div class="nav-dropdown">
+            <button
+              aria-haspopup="true"
+              class="nav-dropdown-toggle"
+              type="button"
+            >
+              Productos
+            </button>
+            <div class="nav-dropdown-menu" role="menu">
+              <div class="dropdown-group">
+                <span>Prospección</span
+                ><a href="sitios-web/index.html">Sitio Web</a
+                ><a href="chatbots-ia/index.html">ChatBots</a
+                ><a href="google-ads/index.html">Google ADS</a
+                ><a href="campanas-publicitarias/index.html"
+                  >Campañas Publicitarias</a
+                ><a href="redes-sociales/index.html">Redes sociales</a>
+              </div>
+              <div class="dropdown-group">
+                <span>Cotización</span
+                ><a href="agentes-online/index.html">Agentes on-line</a
+                ><a href="plataforma-cotizacion/index.html"
+                  >Plataforma de Cotización</a
+                >
+              </div>
+              <div class="dropdown-group">
+                <span>Venta</span
+                ><a href="tienda-en-linea/index.html">Tienda en línea</a>
+              </div>
+              <div class="dropdown-group">
+                <span>Facturación</span
+                ><a href="facturacion/index.html">Gestión de facturas</a>
+              </div>
+              <div class="dropdown-group">
+                <span>Administración</span
+                ><a href="automatizacion/index.html">Tareas administrativas</a>
+              </div>
+            </div>
+          </div>
+          <a href="quienes-somos/index.html">Quiénes somos</a
+          ><a href="index.html#cotizacion">Cotización</a
+          ><a href="contacto/index.html">Contacto</a>
+        </nav>
+        <div class="btns">
+          <a class="btn btn-secondary" href="index.html#cotizacion"
+            >Solicitar cotización</a
+          ><a
+            class="btn btn-primary"
+            href="https://wa.me/525534137179"
+            target="_blank"
+            >Contactar por WhatsApp</a
+          >
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="hero section" id="inicio">
+        <div class="container">
+          <div class="hero-shell">
+            <div class="hero-grid">
+              <div class="hero-copy">
+                <span class="eyebrow">IA Softworks MX</span>
+                <h1>Herramientas IA para empresas.</h1>
+                <div class="hero-text">
+                  <p>
+                    Desarrollamos soluciones con Inteligencia Artificial para
+                    optimizar toda la cadena de valor de tu negocio.
+                  </p>
+                  <p>
+                    A diferencia del software tradicional, nuestras plataformas
+                    se diseñan para las necesidades especificas de cada empresa
+                    y en el lenguaje de su personal y clientela.
+                  </p>
+                  <p>
+                    La máxima automatización posible de las tareas mediante IA,
+                    reduce errores, costos y lapsos de entrega.
+                  </p>
+                  <p>
+                    Sin importar si eres un profesional independiente, una PYME
+                    o una gran Corporación, el futuro de tu negocio depende ya
+                    de la adecuada implementación de herramientas IA.
+                  </p>
+                </div>
+              </div>
+              <div class="hero-visual">
+                <div
+                  aria-label="Mapa interactivo de servicios de IA Softworks MX"
+                  class="mapa-ia"
+                  id="mapaIA"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="mapa-ia__conexiones"
+                    id="conexionesIA"
+                  ></svg>
+                  <div class="mapa-ia__decoracion mapa-ia__decoracion--1"></div>
+                  <div class="mapa-ia__decoracion mapa-ia__decoracion--2"></div>
+                  <div class="mapa-ia__decoracion mapa-ia__decoracion--3"></div>
+                  <a
+                    class="nodo nodo--principal"
+                    data-amplitud="7"
+                    data-id="softworks"
+                    data-velocidad="0.0008"
+                    data-x="50"
+                    data-y="14"
+                    href="index.html"
+                  >
+                    <span class="nodo__icono">IA</span>
+                    <span class="nodo__texto">IA Softworks MX</span>
+                  </a>
+                  <a
+                    class="nodo nodo--producto"
+                    data-amplitud="10"
+                    data-id="chatbots"
+                    data-velocidad="0.0012"
+                    data-x="21"
+                    data-y="34"
+                    href="chatbots-ia/index.html"
+                  >
+                    <span class="nodo__punto"></span>
+                    <span class="nodo__texto">ChatBots</span>
+                  </a>
+                  <a
+                    class="nodo nodo--producto"
+                    data-amplitud="8"
+                    data-id="desarrollo"
+                    data-velocidad="0.0009"
+                    data-x="49"
+                    data-y="41"
+                    href="sitios-web/index.html"
+                  >
+                    <span class="nodo__punto"></span>
+                    <span class="nodo__texto">Desarrollo Web</span>
+                  </a>
+                  <a
+                    class="nodo nodo--producto"
+                    data-amplitud="9"
+                    data-id="automatizacion"
+                    data-velocidad="0.0011"
+                    data-x="79"
+                    data-y="34"
+                    href="automatizacion/index.html"
+                  >
+                    <span class="nodo__punto"></span>
+                    <span class="nodo__texto">Automatización</span>
+                  </a>
+                  <a
+                    class="nodo nodo--destacado"
+                    data-amplitud="7"
+                    data-id="inteligencia"
+                    data-velocidad="0.001"
+                    data-x="53"
+                    data-y="61"
+                    href="#servicios"
+                  >
+                    <span class="nodo__punto"></span>
+                    <span class="nodo__texto">Inteligencia Artificial</span>
+                  </a>
+                  <a
+                    class="nodo nodo--tecnologia"
+                    data-amplitud="6"
+                    data-id="apis"
+                    data-velocidad="0.0013"
+                    data-x="15"
+                    data-y="78"
+                    href="#servicios"
+                  >
+                    <span class="nodo__punto"></span>
+                    <span class="nodo__texto">APIs</span>
+                  </a>
+                  <a
+                    class="nodo nodo--tecnologia"
+                    data-amplitud="7"
+                    data-id="crm"
+                    data-velocidad="0.001"
+                    data-x="42"
+                    data-y="84"
+                    href="#servicios"
+                  >
+                    <span class="nodo__punto"></span>
+                    <span class="nodo__texto">CRM</span>
+                  </a>
+                  <a
+                    class="nodo nodo--tecnologia"
+                    data-amplitud="8"
+                    data-id="agentes"
+                    data-velocidad="0.0012"
+                    data-x="72"
+                    data-y="82"
+                    href="agentes-online/index.html"
+                  >
+                    <span class="nodo__punto"></span>
+                    <span class="nodo__texto">Agentes online</span>
+                  </a>
+                  <a
+                    class="nodo nodo--tecnologia"
+                    data-amplitud="6"
+                    data-id="campanas"
+                    data-velocidad="0.0009"
+                    data-x="88"
+                    data-y="65"
+                    href="campanas-publicitarias/index.html"
+                  >
+                    <span class="nodo__punto"></span>
+                    <span class="nodo__texto">Campañas</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-xl" id="servicios">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Servicios principales</span>
+            <h2 class="heading-h2">
+              Soluciones de inteligencia artificial para empresas.
+            </h2>
+          </div>
+          <div class="service-grid">
+            <article class="panel">
+              <div class="icon-pill">🧾</div>
+              <h2>Sistemas punto de venta pos.</h2>
+              <p>
+                Procesa ventas, cobra y controla inventario de forma sencilla,
+                desde una misma plataforma y sin pagar costosas licencias de
+                software.
+              </p>
+            </article>
+            <article class="panel">
+              <div class="icon-pill">🛒</div>
+              <h2>Tiendas en línea.</h2>
+              <p>
+                Cargar productos, promover, integrar contenidos y generar
+                tráfico mas fácil.
+              </p>
+            </article>
+            <article class="panel">
+              <div class="icon-pill">📊</div>
+              <h2>
+                Plataformas automatizadas de registro, transferencia y análisis
+                de datos.
+              </h2>
+              <p>
+                Sistemas de cotización, facturación, proveedores, inventarios,
+                contabilidad, etc. Intégralos, automatiza registros/formatos,
+                analiza y genera reportes en tiempo real y en una sola
+                plataforma.
+              </p>
+            </article>
+            <article class="panel">
+              <div class="icon-pill">📣</div>
+              <h2>Generación de contenidos y marketing digital.</h2>
+              <p>
+                Sitios web optimizados para posicionamiento orgánico, creación y
+                administración de campañas automatizadas de Google ADS, creación
+                de contenido digital para redes, tienda y catálogos con IA.
+              </p>
+            </article>
+            <article class="panel">
+              <div class="icon-pill">💬</div>
+              <h2>Chatbots.</h2>
+              <p>
+                Convierte el tráfico en tu sito y tienda en leads reales con
+                respuestas inteligentes al cliente, soporte técnico y cotización
+                al momento.
+              </p>
+            </article>
+            <article class="panel">
+              <div class="icon-pill">⚙️</div>
+              <h2>
+                Agentes IA especializados para tareas/posiciones específicas.
+              </h2>
+              <p>
+                Tu negocio pierde dinero todos los días con personal realizando
+                tareas repetitivas, poco demandantes o labores administrativas
+                que no están enfocadas a vender y entregar resultados.
+              </p>
+            </article>
+            <article class="panel wide-card">
+              <div class="icon-pill">✨</div>
+              <h2>
+                ¿Porqué invertir en plataformas IA v/s licencias de software
+                tradicionales?
+              </h2>
+              <p>Nuestro expertise nos permite generar desarrollos;</p>
+              <ol>
+                <li>
+                  Entendiendo primero tu propuesta de valor, tu mercado y tus
+                  objetivos.
+                </li>
+                <li>
+                  Traje a la medida. Específicos para las necesidades de tu
+                  negocio.
+                </li>
+                <li>
+                  A una fracción del costo del desarrollo/adquisición de
+                  software tradicional.
+                </li>
+                <li>
+                  Automatizados, con la menor intervención humana posible.
+                </li>
+                <li>
+                  Integrados al ecosistema de tu negocio, fáciles de adaptar,
+                  optimizar y escalar.
+                </li>
+                <li>
+                  De los que tu negocio sea dueño, sin pagar licencias
+                  permanentemente.
+                </li>
+              </ol>
+              <div class="hero-photo-wrap" style="margin-top: 28px">
+                <img
+                  alt="Chatbot con inteligencia artificial para atención automatizada al cliente"
+                  class="hero-photo"
+                  decoding="async"
+                  height="1086"
+                  loading="lazy"
+                  src="assets/chatbots-ia.png"
+                  title="Chatbots y asistentes virtuales con inteligencia artificial"
+                  width="1448"
+                />
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section-xl">
+        <div class="container">
+          <div class="cta-block">
+            <div>
+              <h2 class="heading-h2">Herramientas IA para empresas.</h2>
+              <p>
+                Agenda una llamada y cuéntanos qué proceso quieres mejorar:
+                ventas, cotización, facturación, atención al cliente o
+                administración.
+              </p>
+            </div>
+            <div class="cta-actions">
+              <a class="btn btn-secondary" href="#cotizacion"
+                >Solicitar cotización</a
+              ><a
+                class="btn btn-primary"
+                href="https://wa.me/525534137179"
+                target="_blank"
+                >Contactar por WhatsApp</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-xl" id="cotizacion">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Solicitud de cotización</span>
+            <h2 class="heading-h2">
+              Cotización de software e inteligencia artificial para empresas.
+            </h2>
+            <p>
+              Completa los datos y enviaremos tu solicitud directamente a
+              nuestro equipo por correo.
+            </p>
+          </div>
+          <div class="form-shell">
+            <div class="panel">
+              <form id="quoteForm">
+                <div class="form-grid">
+                  <label
+                    >Nombre o empresa<input
+                      name="nombre"
+                      placeholder="Ej. AQUA NARVAL"
+                      required=""
+                      type="text" /></label
+                  ><label
+                    >Persona de contacto<input
+                      name="contacto"
+                      placeholder="Ej. Lic. Eduardo Serrano"
+                      required=""
+                      type="text"
+                  /></label>
+                </div>
+                <div class="form-grid">
+                  <label
+                    >Correo electrónico<input
+                      name="email"
+                      placeholder="correo@empresa.com"
+                      required=""
+                      type="email" /></label
+                  ><label
+                    >Teléfono / WhatsApp<input
+                      name="telefono"
+                      placeholder="55 0000 0000"
+                      required=""
+                      type="tel"
+                  /></label>
+                </div>
+                <div class="form-grid">
+                  <label
+                    >Servicio de interés<select name="servicio" required="">
+                      <option value="">Selecciona una opción</option>
+                      <option>Punto de venta POS</option>
+                      <option>Tienda en línea</option>
+                      <option>Chatbot / Agente IA</option>
+                      <option>Sistema de cotización</option>
+                      <option>Facturación / reportes</option>
+                      <option>Automatización administrativa</option>
+                      <option>Mejora a sistema existente</option>
+                    </select></label
+                  ><label
+                    >Presupuesto estimado<input
+                      name="presupuesto"
+                      placeholder="Ej. $6,000 MXN o por definir"
+                      type="text"
+                  /></label>
+                </div>
+                <label
+                  >Descripción del proyecto<textarea
+                    name="descripcion"
+                    placeholder="Describe qué necesitas, tiempos, procesos actuales, reportes, usuarios, etc."
+                    required=""
+                  ></textarea></label
+                ><label
+                  >Datos fiscales / razón social, si aplica<textarea
+                    name="fiscales"
+                    placeholder="RFC, razón social, régimen fiscal, dirección fiscal, uso CFDI, etc."
+                  ></textarea>
+                </label>
+                <button class="btn btn-primary" type="submit">
+                  Enviar solicitud
+                </button>
+              </form>
+            </div>
+            <aside class="panel">
+              <h3 class="heading-h3">Base de cotización</h3>
+              <p>
+                La cotización puede incluir descripción del servicio, código de
+                parte, precio unitario, subtotal, IVA, total, vigencia, tiempo
+                de entrega, condiciones de pago y datos bancarios.
+              </p>
+              <ul>
+                <li>Vigencia sugerida: 30 días.</li>
+                <li>Tiempo de entrega: según alcance del proyecto.</li>
+                <li>
+                  Condiciones de pago: anticipo y liquidación por definir.
+                </li>
+                <li>Soporte técnico: puede incluirse por periodo acordado.</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+      <section class="section-xl" id="contacto">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Sedes y contacto</span>
+            <h2 class="heading-h2">
+              Contacto para soluciones de software e IA a la medida.
+            </h2>
+            <p>
+              Estamos listos para ayudarte a llevar software, automatización y
+              herramientas IA a tu operación.
+            </p>
+          </div>
+          <div class="contact-grid">
+            <article class="panel">
+              <div class="icon-pill">📍</div>
+              <h3 class="heading-h3">Estado de méxico</h3>
+              <p>
+                Calle 20 de Noviembre No. 45, Santiago Tezoyuca, Estado de
+                México, C.P. 56000.
+              </p>
+            </article>
+            <article class="panel">
+              <div class="icon-pill">🏢</div>
+              <h3 class="heading-h3">Cdmx</h3>
+              <p>
+                Otavalo número 91, Colonia Lindavista, Delegación Gustavo A.
+                Madero, México, Distrito Federal.
+              </p>
+              <p><b>Tel:</b> (0155) 5752-1715</p>
+            </article>
+            <article class="panel">
+              <div class="icon-pill">🏬</div>
+              <h3 class="heading-h3">Puebla</h3>
+              <p>
+                Avenida 125 Oriente #226, Guadalupe Hidalgo, Puebla, C.P. 72494.
+              </p>
+              <p><b>Tel:</b> 222 227 3866</p>
+            </article>
+          </div>
+          <div class="feature-band" style="margin-top: 16px">
+            <div class="panel">
+              <h3 class="heading-h3">Contacto directo</h3>
+              <p>
+                <b>Email:</b>
+                <a href="mailto:alan_aarm@hotmail.com">alan_aarm@hotmail.com</a>
+              </p>
+              <p>
+                <b>WhatsApp Alan Rodríguez:</b>
+                <a href="https://wa.me/525534137179" target="_blank"
+                  >55 3413 7179</a
+                >
+              </p>
+            </div>
+            <div class="panel">
+              <h3 class="heading-h3">Áreas de atención</h3>
+              <p>
+                Software a medida, inteligencia artificial, ventas,
+                automatización, facturación y experiencias digitales para
+                empresas.
+              </p>
+            </div>
+            <div class="panel">
+              <h3 class="heading-h3">Respuesta rápida</h3>
+              <p>
+                Cuéntanos tu necesidad y te orientamos sobre alcance, solución
+                recomendada y siguiente paso para cotizar.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div aria-live="polite" class="assistant-widget">
+      <div class="assistant-panel" id="assistantPanel">
+        <div class="assistant-head">
+          <div class="assistant-title">
+            <div class="assistant-avatar">🤖</div>
+            <div>
+              <strong>Asistente IA Softworks MX</strong
+              ><span>Orientación rápida para visitantes</span>
+            </div>
+          </div>
+          <button class="assistant-close" id="assistantClose" type="button">
+            ×
+          </button>
+        </div>
+        <div class="assistant-messages" id="assistantMessages">
+          <div class="msg bot">
+            Hola 👋 Soy el asistente virtual de IA Softworks MX. Puedo ayudarte
+            a conocer servicios, solicitar una cotización o contactar por
+            WhatsApp.
+          </div>
+        </div>
+        <div class="assistant-chips">
+          <button
+            class="assistant-chip"
+            data-question="¿Qué servicios ofrecen?"
+            type="button"
+          >
+            Servicios</button
+          ><button
+            class="assistant-chip"
+            data-question="Quiero una cotización"
+            type="button"
+          >
+            Cotización</button
+          ><button
+            class="assistant-chip"
+            data-question="Quiero contactar por WhatsApp"
+            type="button"
+          >
+            WhatsApp
+          </button>
+        </div>
+        <form class="assistant-form" id="assistantForm">
+          <input
+            autocomplete="off"
+            id="assistantInput"
+            placeholder="Escribe tu pregunta..."
+            type="text"
+          /><button type="submit">Enviar</button>
+        </form>
+      </div>
+      <button class="assistant-toggle" id="assistantToggle" type="button">
+        <span>🤖</span><span>Asistente virtual</span>
+      </button>
+    </div>
+    <footer>
+      <div class="container footer-grid">
+        <p>
+          © <span id="year"></span> IA Softworks MX. Todos los derechos
+          reservados.
+        </p>
+        <p>Soluciones inteligentes. Resultados reales.</p>
+        <a href="https://wa.me/525534137179" target="_blank">WhatsApp</a>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -90,10 +90,10 @@ if (mb_strlen($message) > 1200) {
 $knowledgeFile = dirname(__DIR__) . '/data/informacion-empresa.txt';
 $companyKnowledge = is_file($knowledgeFile)
     ? trim((string)file_get_contents($knowledgeFile))
-    : 'IA Softworks MX ofrece soluciones de software e inteligencia artificial.';
+    : 'MIA Coding ofrece soluciones de software e inteligencia artificial.';
 
 $systemInstruction = <<<TEXT
-Eres el asistente virtual oficial de IA Softworks MX.
+Eres el asistente virtual oficial de MIA Coding.
 Responde siempre en español, de forma clara, amable, profesional y breve.
 Utiliza únicamente la información empresarial proporcionada abajo.
 No inventes precios, promociones, tiempos de entrega, garantías, clientes ni características.
@@ -151,11 +151,20 @@ if ($ch === false) {
     exit;
 }
 
+// Algunos entornos Windows de desarrollo usan un certificado corporativo que
+// OpenSSL no puede leer desde el almacén del sistema. La excepción solo se
+// habilita mediante el lanzador local y para clientes conectados por loopback.
+$remoteAddress = (string)($_SERVER['REMOTE_ADDR'] ?? '');
+$isLoopback = in_array($remoteAddress, ['127.0.0.1', '::1'], true);
+$allowInsecureLocalTls = getenv('IA_LOCAL_DEVELOPMENT') === '1' && $isLoopback;
+
 curl_setopt_array($ch, [
     CURLOPT_POST => true,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_CONNECTTIMEOUT => 10,
     CURLOPT_TIMEOUT => 35,
+    CURLOPT_SSL_VERIFYPEER => !$allowInsecureLocalTls,
+    CURLOPT_SSL_VERIFYHOST => $allowInsecureLocalTls ? 0 : 2,
     CURLOPT_HTTPHEADER => [
         'Content-Type: application/json',
         'x-goog-api-key: ' . $apiKey,
@@ -180,9 +189,14 @@ if ($response === false) {
 $data = json_decode($response, true);
 if ($status < 200 || $status >= 300) {
     error_log('Gemini API error HTTP ' . $status . ': ' . $response);
+    $upstreamMessage = $allowInsecureLocalTls
+        ? trim((string)($data['error']['message'] ?? ''))
+        : '';
     http_response_code(502);
     echo json_encode([
-        'error' => 'Gemini no pudo responder en este momento. Revisa la clave, el modelo y la cuota disponible.'
+        'error' => $upstreamMessage !== ''
+            ? 'Gemini: ' . $upstreamMessage
+            : 'Gemini no pudo responder en este momento. Revisa la clave, el modelo y la cuota disponible.'
     ], JSON_UNESCAPED_UNICODE);
     exit;
 }

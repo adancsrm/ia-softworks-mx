@@ -3,7 +3,7 @@ mi-sitio-ia-softworks-mx/
 ├── index.html
 ├── styles.css
 ├── script.js
-├── assets/logo-ia-softworks-mx.jpg
+├── assets/logo-mia-coding.jpeg
 ├── sitios-web/index.html
 ├── chatbots-ia/index.html
 ├── google-ads/index.html
@@ -71,6 +71,6 @@ api/config.php contiene secretos y está excluido mediante .gitignore. No debe
 subirse a Git. Como alternativa, el servidor puede definir RESEND_API_KEY,
 SALES_RECIPIENT, GEMINI_API_KEY y GEMINI_MODEL como variables de entorno.
 
-Los mensajes se envían desde IA Softworks MX <contacto@ia-softworks.mx> hacia
+Los mensajes se envían desde MIA Coding <contacto@ia-softworks.mx> hacia
 bshgroupcrm@gmail.com. El correo del visitante se configura como dirección de
 respuesta.

@@ -50,6 +50,21 @@ $telefono = clean($input['telefono'] ?? '', 60);
 $servicio = clean($input['servicio'] ?? '', 160);
 $presupuesto = clean($input['presupuesto'] ?? 'Por definir', 100) ?: 'Por definir';
 $descripcion = clean($input['descripcion'] ?? '', 3000);
+$privacidad = clean($input['privacidad'] ?? '', 20);
+$serviciosPermitidos = [
+    'Punto de venta POS',
+    'Tienda en línea',
+    'Chatbot / Agente IA',
+    'Sistema de cotización',
+    'Facturación / reportes',
+    'Automatización administrativa',
+    'Mejora a sistema existente',
+    'Desarrollo de software a medida',
+    'Sitio web',
+    'Google Ads',
+    'Redes sociales',
+    'Campañas publicitarias',
+];
 
 if ($nombre === '' || $contacto === '' || $telefono === '' || $servicio === '' || $descripcion === '') {
     respond(422, 'Completa todos los campos obligatorios.');
@@ -57,19 +72,46 @@ if ($nombre === '' || $contacto === '' || $telefono === '' || $servicio === '' |
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     respond(422, 'Escribe un correo electrónico válido.');
 }
+if (!in_array($servicio, $serviciosPermitidos, true)) {
+    respond(422, 'Selecciona un servicio válido.');
+}
+if ($privacidad !== 'acepto') {
+    respond(422, 'Debes aceptar el aviso de privacidad.');
+}
 
 $apiKey = getenv('RESEND_API_KEY') ?: '';
+$recipient = getenv('SALES_RECIPIENT') ?: 'bshgroupcrm@gmail.com';
 $configFile = __DIR__ . '/config.php';
 if (is_file($configFile)) {
     $config = require $configFile;
     if (is_array($config)) {
         $apiKey = (string)($config['resend_api_key'] ?? $apiKey);
+        $recipient = (string)($config['sales_recipient'] ?? $recipient);
     }
 }
 
 if ($apiKey === '' || $apiKey === 'PEGA_AQUI_TU_CLAVE_DE_RESEND') {
     respond(503, 'El servicio de correo todavía no está configurado.');
 }
+if (!filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
+    error_log('Invalid SALES_RECIPIENT configuration.');
+    respond(503, 'El destinatario de ventas no está configurado correctamente.');
+}
+
+session_name('ia_softworks_form');
+session_set_cookie_params([
+    'httponly' => true,
+    'secure' => (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'),
+    'samesite' => 'Lax',
+]);
+session_start();
+
+$now = time();
+$lastSubmission = (int)($_SESSION['last_quote_submission'] ?? 0);
+if ($lastSubmission > 0 && ($now - $lastSubmission) < 30) {
+    respond(429, 'Espera unos segundos antes de enviar otra solicitud.');
+}
+$_SESSION['last_quote_submission'] = $now;
 
 $subjectName = preg_replace('/[\r\n]+/', ' ', $nombre) ?: 'Nuevo prospecto';
 $body = '<h2>Nueva solicitud de cotización</h2>'
@@ -83,7 +125,7 @@ $body = '<h2>Nueva solicitud de cotización</h2>'
 
 $payload = [
     'from' => 'IA Softworks MX <contacto@ia-softworks.mx>',
-    'to' => ['alan_aarm@hotmail.com'],
+    'to' => [$recipient],
     'reply_to' => $email,
     'subject' => 'Solicitud de cotización - ' . $subjectName,
     'html' => $body,

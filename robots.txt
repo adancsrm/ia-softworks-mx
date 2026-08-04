@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /data/
+Disallow: /index1.html
+
+Sitemap: https://ia-softworks.mx/sitemap.xml

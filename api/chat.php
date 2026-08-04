@@ -4,12 +4,44 @@ declare(strict_types=1);
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
+header('X-Content-Type-Options: nosniff');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['error' => 'Método no permitido.'], JSON_UNESCAPED_UNICODE);
     exit;
 }
+
+$contentType = strtolower((string)($_SERVER['CONTENT_TYPE'] ?? ''));
+if (strpos($contentType, 'application/json') === false) {
+    http_response_code(415);
+    echo json_encode(['error' => 'Formato de solicitud no permitido.'], JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+session_name('ia_softworks_assistant');
+session_set_cookie_params([
+    'httponly' => true,
+    'secure' => (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'),
+    'samesite' => 'Lax',
+]);
+session_start();
+
+$now = time();
+$windowStart = $now - 300;
+$recentRequests = array_values(array_filter(
+    (array)($_SESSION['assistant_requests'] ?? []),
+    static fn($timestamp): bool => (int)$timestamp >= $windowStart
+));
+if (count($recentRequests) >= 12) {
+    http_response_code(429);
+    echo json_encode([
+        'error' => 'Se alcanzó el límite temporal del asistente. Intenta nuevamente en unos minutos.'
+    ], JSON_UNESCAPED_UNICODE);
+    exit;
+}
+$recentRequests[] = $now;
+$_SESSION['assistant_requests'] = $recentRequests;
 
 $apiKey = getenv('GEMINI_API_KEY') ?: '';
 $model = getenv('GEMINI_MODEL') ?: 'gemini-3.5-flash';

@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const siteScript = document.querySelector('script[src$="script.js"]');
+  const privacyUrl = siteScript
+    ? new URL("privacidad/index.html", siteScript.src).href
+    : "privacidad/index.html";
+
   /*
    * =========================================================
    * AÑO AUTOMÁTICO DEL FOOTER
@@ -11,6 +16,25 @@ document.addEventListener("DOMContentLoaded", function () {
     yearElement.textContent = new Date().getFullYear();
   }
 
+  const footerGrid = document.querySelector("footer .footer-grid");
+
+  if (footerGrid && !footerGrid.querySelector(".privacy-link")) {
+    const privacyLink = document.createElement("a");
+    privacyLink.className = "privacy-link";
+    privacyLink.href = privacyUrl;
+    privacyLink.textContent = "Aviso de privacidad";
+    footerGrid.appendChild(privacyLink);
+  }
+
+  document.querySelectorAll('a[target="_blank"]').forEach(function (link) {
+    const relValues = new Set(
+      (link.getAttribute("rel") || "").split(/\s+/).filter(Boolean),
+    );
+    relValues.add("noopener");
+    relValues.add("noreferrer");
+    link.setAttribute("rel", Array.from(relValues).join(" "));
+  });
+
   /*
    * =========================================================
    * FORMULARIO DE COTIZACIÓN
@@ -20,14 +44,32 @@ document.addEventListener("DOMContentLoaded", function () {
   const quoteForm = document.getElementById("quoteForm");
 
   if (quoteForm) {
-    const quoteScript = document.querySelector('script[src$="script.js"]');
-    const phpContactUrl = quoteScript
-      ? new URL("api/contact.php", quoteScript.src).href
+    const phpContactUrl = siteScript
+      ? new URL("api/contact.php", siteScript.src).href
       : "api/contact.php";
-    const quoteApiUrls = ["/.netlify/functions/contact", phpContactUrl];
     const quoteButton = quoteForm.querySelector('button[type="submit"]');
-    const quoteNote = quoteForm.querySelector(".form-note");
+    let quoteNote = quoteForm.querySelector(".form-note");
     const originalButtonText = quoteButton?.textContent || "Enviar solicitud";
+
+    if (quoteButton && !quoteForm.querySelector('input[name="privacidad"]')) {
+      const consentLabel = document.createElement("label");
+      consentLabel.className = "privacy-consent";
+      consentLabel.innerHTML = `
+        <input name="privacidad" type="checkbox" value="acepto" required>
+        <span>
+          He leído y acepto el
+          <a href="${privacyUrl}" target="_blank" rel="noopener">aviso de privacidad</a>.
+        </span>
+      `;
+      quoteForm.insertBefore(consentLabel, quoteButton);
+    }
+
+    if (quoteButton && !quoteNote) {
+      quoteNote = document.createElement("p");
+      quoteNote.className = "form-note";
+      quoteNote.setAttribute("aria-live", "polite");
+      quoteButton.insertAdjacentElement("afterend", quoteNote);
+    }
 
     // Campo trampa: los visitantes no lo ven, pero ayuda a bloquear bots.
     const websiteField = document.createElement("input");
@@ -62,22 +104,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const requestBody = JSON.stringify(
           Object.fromEntries(new FormData(form)),
         );
-        let response;
-
-        for (const apiUrl of quoteApiUrls) {
-          response = await fetch(apiUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: requestBody,
-          });
-
-          // En Hostinger no existe la ruta de Functions de Netlify.
-          if (response.status !== 404 && response.status !== 405) break;
-        }
-
-        if (!response) {
-          throw new Error("No se encontró el servicio de envío.");
-        }
+        const response = await fetch(phpContactUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: requestBody,
+        });
         let result = {};
         try {
           result = await response.json();
@@ -140,6 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
         : !assistantPanel.classList.contains("is-open");
 
     assistantPanel.classList.toggle("is-open", shouldOpen);
+    assistantToggle?.setAttribute("aria-expanded", String(shouldOpen));
   }
 
   function addAssistantMessage(text, type) {
@@ -266,6 +298,15 @@ document.addEventListener("DOMContentLoaded", function () {
     assistantInput &&
     assistantMessages
   ) {
+    assistantToggle.setAttribute("aria-label", "Abrir asistente virtual");
+    assistantToggle.setAttribute("aria-controls", "assistantPanel");
+    assistantToggle.setAttribute("aria-expanded", "false");
+    assistantClose?.setAttribute("aria-label", "Cerrar asistente virtual");
+    assistantInput.setAttribute("aria-label", "Pregunta para el asistente virtual");
+    assistantForm
+      .querySelector('button[type="submit"]')
+      ?.setAttribute("aria-label", "Enviar pregunta al asistente");
+
     assistantToggle.addEventListener("click", function () {
       toggleAssistant();
     });
@@ -299,9 +340,68 @@ document.addEventListener("DOMContentLoaded", function () {
       askAssistant(question);
     });
 
-    setTimeout(function () {
-      toggleAssistant(true);
-    }, 900);
+  }
+
+  /*
+   * =========================================================
+   * NAVEGACIÓN PRINCIPAL Y MENÚ MÓVIL
+   * =========================================================
+   */
+
+  const mainNav = document.querySelector(".topbar .nav");
+  const navLinks = mainNav?.querySelector(".nav-links");
+
+  if (mainNav && navLinks) {
+    const mobileToggle = document.createElement("button");
+    mobileToggle.className = "mobile-nav-toggle";
+    mobileToggle.type = "button";
+    mobileToggle.setAttribute("aria-label", "Abrir menú principal");
+    mobileToggle.setAttribute("aria-controls", "main-navigation");
+    mobileToggle.setAttribute("aria-expanded", "false");
+    mobileToggle.textContent = "☰";
+    navLinks.id = "main-navigation";
+    mainNav.insertBefore(mobileToggle, navLinks);
+
+    function closeMobileNav() {
+      mainNav.classList.remove("nav-open");
+      mobileToggle.setAttribute("aria-expanded", "false");
+      mobileToggle.setAttribute("aria-label", "Abrir menú principal");
+      mobileToggle.textContent = "☰";
+    }
+
+    mobileToggle.addEventListener("click", function () {
+      const shouldOpen = !mainNav.classList.contains("nav-open");
+      mainNav.classList.toggle("nav-open", shouldOpen);
+      mobileToggle.setAttribute("aria-expanded", String(shouldOpen));
+      mobileToggle.setAttribute(
+        "aria-label",
+        shouldOpen ? "Cerrar menú principal" : "Abrir menú principal",
+      );
+      mobileToggle.textContent = shouldOpen ? "×" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(function (link) {
+      const linkUrl = new URL(link.href, window.location.href);
+      const currentUrl = new URL(window.location.href);
+      const normalizedLinkPath = linkUrl.pathname.replace(/\/index\.html$/, "/");
+      const normalizedCurrentPath = currentUrl.pathname.replace(/\/index\.html$/, "/");
+
+      if (
+        linkUrl.origin === currentUrl.origin &&
+        normalizedLinkPath === normalizedCurrentPath &&
+        !linkUrl.hash
+      ) {
+        link.setAttribute("aria-current", "page");
+      }
+
+      link.addEventListener("click", closeMobileNav);
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!mainNav.contains(event.target)) {
+        closeMobileNav();
+      }
+    });
   }
 
   /*
@@ -309,8 +409,8 @@ document.addEventListener("DOMContentLoaded", function () {
    * MENÚ DESPLEGABLE DE PRODUCTOS
    * =========================================================
    *
-   * Mantiene visible el menú después de pasar el mouse.
-   * Se cierra al elegir una opción o hacer clic fuera.
+   * Se abre y cierra con el mismo botón.
+   * También se cierra al elegir una opción, hacer clic fuera o pulsar Escape.
    */
 
   document
@@ -338,11 +438,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       toggle.setAttribute("aria-expanded", "false");
 
-      dropdown.addEventListener(
-        "mouseenter",
-        openDropdown,
-      );
-
       toggle.addEventListener("click", function (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -355,7 +450,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       menu.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", closeDropdown);
+        link.addEventListener("click", function () {
+          closeDropdown();
+          toggle.blur();
+        });
       });
 
       document.addEventListener("click", function (event) {

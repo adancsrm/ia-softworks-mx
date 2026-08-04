@@ -14,9 +14,14 @@ mi-sitio-ia-softworks-mx/
 ├── tienda-en-linea/index.html
 ├── facturacion/index.html
 ├── automatizacion/index.html
-└── quienes-somos/index.html
+├── quienes-somos/index.html
+├── contacto/index.html
+├── privacidad/index.html
+├── robots.txt
+├── sitemap.xml
+└── .htaccess
 
-Todas las páginas conservan logo, nombre, sedes, contacto, formulario de cotización, WhatsApp de Alan Rodríguez y asistente virtual.
+Todas las páginas conservan logo, nombre, sedes, contacto, formulario de cotización y asistente virtual. El contacto heredado de Alan Rodríguez debe permanecer retirado. El número directo o WhatsApp del responsable se incorporará únicamente cuando haya sido confirmado.
 
 INTEGRACIÓN CON GEMINI API
 --------------------------
@@ -40,29 +45,32 @@ IMPORTANTE:
 - Nunca coloques la clave en script.js ni en una página HTML.
 - No incluyas api/config.php al compartir o publicar el código fuente.
 - Revisa periódicamente en Google AI Studio la cuota y el modelo disponibles.
-ENVÍO DE FORMULARIOS CON RESEND
-===============================
+ENVÍO DE FORMULARIOS EN BANAHOSTING / CPANEL
+============================================
 
-NETLIFY
--------
+El sitio usa exclusivamente api/contact.php. No depende de Netlify.
 
-El sitio usa automáticamente netlify/functions/contact.mjs cuando está desplegado en Netlify.
-Crea en Netlify la variable de entorno RESEND_API_KEY y realiza un nuevo deploy.
-No subas api/config.php a Netlify.
+Requisitos del hosting:
+- Apache o LiteSpeed con PHP 8 o superior.
+- Extensiones PHP cURL y mbstring.
+- Sitio publicado mediante HTTPS.
 
-HOSTINGER
----------
-
-Si la Function de Netlify no existe, el formulario usa automáticamente api/contact.php.
-Copia api/config.php.example como api/config.php y coloca ahí resend_api_key.
-El archivo api/config.php debe permanecer privado y está excluido por .gitignore.
-
-1. Agrega y verifica ia-softworks.mx en el panel de Resend.
+Configuración:
+1. Agrega y verifica ia-softworks.mx en Resend.
 2. Copia api/config.php.example como api/config.php.
-3. En api/config.php, sustituye PEGA_AQUI_TU_CLAVE_DE_RESEND por la API key real.
-4. No publiques la llave ni incluyas api/config.php en repositorios. El archivo ya está en .gitignore.
-5. Sube el sitio y envía una solicitud de prueba desde cualquiera de los formularios.
+3. Sustituye PEGA_AQUI_TU_CLAVE_DE_RESEND por la API key real.
+4. Conserva sales_recipient como bshgroupcrm@gmail.com.
+5. Si se habilitará el asistente, configura también la clave de Gemini.
+6. Sube el contenido del proyecto a la carpeta pública asignada al dominio.
+7. Comprueba que https://ia-softworks.mx/api/contact.php responda con
+   "Método no permitido" al abrirla directamente; eso confirma que PHP se ejecuta.
+8. Envía una solicitud real desde el formulario y comprueba su llegada a
+   bshgroupcrm@gmail.com.
 
-También puedes configurar la llave como variable de entorno RESEND_API_KEY y omitirla de config.php.
+api/config.php contiene secretos y está excluido mediante .gitignore. No debe
+subirse a Git. Como alternativa, el servidor puede definir RESEND_API_KEY,
+SALES_RECIPIENT, GEMINI_API_KEY y GEMINI_MODEL como variables de entorno.
+
 Los mensajes se envían desde IA Softworks MX <contacto@ia-softworks.mx> hacia
-alan_aarm@hotmail.com. El correo del visitante se configura como dirección de respuesta.
+bshgroupcrm@gmail.com. El correo del visitante se configura como dirección de
+respuesta.

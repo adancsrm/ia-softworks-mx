@@ -182,24 +182,25 @@ a {
 }
 .brand {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
   flex: 0 0 auto;
 }
 .brand img {
-  width: 44px;
-  height: 44px;
-  object-fit: cover;
-  border-radius: 13px;
-  border: 1px solid var(--border);
-  background: white;
-  padding: 2px;
+  width: 264px;
+  height: auto;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
 }
 .brand-name {
-  font-weight: 800;
-  font-size: 0.94rem;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  width: 100%;
+  font-size: 0;
+  line-height: 1;
+  text-align: left;
   white-space: nowrap;
 }
 .brand-name small {
@@ -207,7 +208,7 @@ a {
   font-size: 0.68rem;
   font-weight: 600;
   color: var(--muted);
-  margin-top: 4px;
+  margin-top: 0;
 }
 .nav-links {
   display: flex;
@@ -1027,9 +1028,6 @@ footer {
   }
   .btn {
     width: 100%;
-  }
-  .brand-name small {
-    display: none;
   }
   .nav-dropdown-menu {
     grid-template-columns: 1fr;

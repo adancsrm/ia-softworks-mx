@@ -24,7 +24,7 @@ los metadatos las utilicen sin modificar las rutas HTML.
 - `assets/alan-rodriguez-desarrollo-software.jpeg`: se conserva porque corresponde
   al apartado “Desarrollador con experiencia en IA” y puede ser la fotografía
   real de Alan.
-- `assets/logo-ia-softworks-mx.jpg`: no se modificó.
+- `assets/logo-mia-coding.jpeg`: no se modificó.
 - Los tres videos y `assets/animacionChatBot.html`: no se modificaron.
 
 ## Dirección visual

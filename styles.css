@@ -205,10 +205,11 @@ a {
 }
 .brand-name small {
   display: block;
-  font-size: 1.36rem;
+  font-size: 0.84rem;
   font-weight: 600;
   color: var(--muted);
   margin-top: 0;
+  line-height: 1.2;
 }
 .nav-links {
   display: flex;

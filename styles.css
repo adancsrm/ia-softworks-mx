@@ -188,7 +188,7 @@ a {
   flex: 0 0 auto;
 }
 .brand img {
-  width: 264px;
+  width: 176px;
   height: auto;
   object-fit: contain;
   border: 0;
@@ -205,7 +205,7 @@ a {
 }
 .brand-name small {
   display: block;
-  font-size: 0.68rem;
+  font-size: 1.36rem;
   font-weight: 600;
   color: var(--muted);
   margin-top: 0;

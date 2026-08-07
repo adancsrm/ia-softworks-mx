@@ -1,4 +1,4 @@
-# Bitácora de tareas — MIA Coding
+# Bitácora de tareas — flowrecIA
 
 Los tiempos son aproximaciones de trabajo técnico y sirven para registrar el
 esfuerzo de cada bloque. No representan tiempo de espera de terceros, DNS,

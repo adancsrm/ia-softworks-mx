@@ -124,7 +124,7 @@ $body = '<h2>Nueva solicitud de cotización</h2>'
     . '<p><strong>Descripción del proyecto:</strong><br>' . nl2br(html($descripcion)) . '</p>';
 
 $payload = [
-    'from' => 'MIA Coding <contacto@ia-softworks.mx>',
+    'from' => 'flowrecIA <contacto@ia-softworks.mx>',
     'to' => [$recipient],
     'reply_to' => $email,
     'subject' => 'Solicitud de cotización - ' . $subjectName,

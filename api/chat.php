@@ -90,10 +90,10 @@ if (mb_strlen($message) > 1200) {
 $knowledgeFile = dirname(__DIR__) . '/data/informacion-empresa.txt';
 $companyKnowledge = is_file($knowledgeFile)
     ? trim((string)file_get_contents($knowledgeFile))
-    : 'MIA Coding ofrece soluciones de software e inteligencia artificial.';
+    : 'flowrecIA ofrece soluciones de software e inteligencia artificial.';
 
 $systemInstruction = <<<TEXT
-Eres el asistente virtual oficial de MIA Coding.
+Eres el asistente virtual oficial de flowrecIA.
 Responde siempre en español, de forma clara, amable, profesional y breve.
 Utiliza únicamente la información empresarial proporcionada abajo.
 No inventes precios, promociones, tiempos de entrega, garantías, clientes ni características.

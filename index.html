@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Plataformas de IA para empresas | MIA Coding</title>
+    <title>Plataformas de IA para empresas | flowrecIA</title>
     <meta
       content="Generamos software a medida implementando herramientas de IA; puntos de venta, tiendas en línea, agentes IA, Chatbots, sistemas de venta."
       name="description"
@@ -15,13 +15,13 @@
     />
     <link href="https://ia-softworks.mx/" rel="canonical" />
     <meta content="https://ia-softworks.mx/" property="og:url" />
-    <meta content="MIA Coding" name="author" />
+    <meta content="flowrecIA" name="author" />
     <meta content="#101010" name="theme-color" />
     <meta content="website" property="og:type" />
     <meta content="es_MX" property="og:locale" />
-    <meta content="MIA Coding" property="og:site_name" />
+    <meta content="flowrecIA" property="og:site_name" />
     <meta
-      content="Plataformas de IA para empresas | MIA Coding"
+      content="Plataformas de IA para empresas | flowrecIA"
       property="og:title"
     />
     <meta
@@ -46,7 +46,7 @@
       name="twitter:image:alt"
     />
     <meta
-      content="Plataformas de IA para empresas | MIA Coding"
+      content="Plataformas de IA para empresas | flowrecIA"
       name="twitter:title"
     />
     <meta
@@ -59,7 +59,7 @@
         "@context": "https://schema.org",
         "@id": "https://ia-softworks.mx/#organization",
         "@type": "Organization",
-        "name": "MIA Coding",
+        "name": "flowrecIA",
         "email": "Ventas@Softworks.com",
         "telephone": "+52-833-239-5885",
         "sameAs": ["https://wa.me/528332395885"],
@@ -82,7 +82,7 @@
         "url": "https://ia-softworks.mx/"
       }
     </script>
-    <link href="assets/logo-mia-coding.jpeg" rel="icon" type="image/jpeg" />
+    <link href="assets/logo-flowrecIA.jpeg" rel="icon" type="image/jpeg" />
     <link href="styles.css" rel="stylesheet" />
     <style id="mapa-ia-estilos">
       /* Mapa mental integrado en el hero */
@@ -256,16 +256,24 @@
       }
 
       .nodo__icono {
-        display: grid;
-        place-items: center;
-        width: 47px;
-        height: 47px;
+        display: inline-flex;
+        align-items: baseline;
+        justify-content: center;
+        width: auto;
+        height: auto;
         color: #faf9f5;
         font-weight: 900;
         letter-spacing: -0.08em;
-        border-radius: 7px;
-        background: var(--map-orange);
-        box-shadow: 0 10px 24px rgba(217, 119, 87, 0.24);
+        line-height: 1;
+        white-space: nowrap;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .nodo__ia {
+        color: var(--map-orange);
+        margin-left: 0.04em;
       }
 
       .nodo--principal {
@@ -289,7 +297,12 @@
       .nodo--principal:hover .nodo__icono,
       .nodo--principal:focus-visible .nodo__icono {
         color: var(--map-ink);
-        background: var(--map-bg);
+        background: transparent;
+      }
+
+      .nodo--principal:hover .nodo__ia,
+      .nodo--principal:focus-visible .nodo__ia {
+        color: var(--map-ink);
       }
 
       .mapa-ia__decoracion {
@@ -364,8 +377,8 @@
         }
 
         .nodo__icono {
-          width: 40px;
-          height: 40px;
+          width: auto;
+          height: auto;
         }
       }
 
@@ -385,16 +398,16 @@
       <div class="container nav">
         <a class="brand" href="index.html"
           ><img
-            alt="MIA Coding"
+            alt="flowrecIA"
             decoding="async"
             fetchpriority="high"
             height="1086"
-            src="assets/logo-mia-coding.jpeg"
-            title="MIA Coding"
+            src="assets/logo-flowrecIA.jpeg"
+            title="flowrecIA"
             width="1448"
           />
           <div class="brand-name">
-            MIA Coding<small>Soluciones inteligentes. Resultados reales.</small>
+            flowrecIA<small>Optimizando tu negocio con IA</small>
           </div>
         </a>
         <nav class="nav-links">
@@ -459,7 +472,7 @@
           <div class="hero-shell">
             <div class="hero-grid">
               <div class="hero-copy">
-                <span class="eyebrow">MIA Coding</span>
+                <span class="eyebrow">flowrecIA</span>
                 <h1>Herramientas IA para empresas.</h1>
                 <div class="hero-text">
                   <p>
@@ -484,7 +497,7 @@
               </div>
               <div class="hero-visual">
                 <div
-                  aria-label="Mapa interactivo de servicios de MIA Coding"
+                  aria-label="Mapa interactivo de servicios de flowrecIA"
                   class="mapa-ia"
                   id="mapaIA"
                 >
@@ -505,8 +518,10 @@
                     data-y="14"
                     href="index.html"
                   >
-                    <span class="nodo__icono">MIA</span>
-                    <span class="nodo__texto">Coding</span>
+                    <span class="nodo__icono"
+                      >flowrec<span class="nodo__ia">IA</span></span
+                    >
+                    <span class="nodo__texto"></span>
                   </a>
                   <a
                     class="nodo nodo--producto"
@@ -901,7 +916,7 @@
           <div class="assistant-title">
             <div class="assistant-avatar">🤖</div>
             <div>
-              <strong>Asistente MIA Coding</strong
+              <strong>Asistente flowrecIA</strong
               ><span>Orientación rápida para visitantes</span>
             </div>
           </div>
@@ -911,7 +926,7 @@
         </div>
         <div class="assistant-messages" id="assistantMessages">
           <div class="msg bot">
-            Hola 👋 Soy el asistente virtual de MIA Coding. Puedo ayudarte a
+            Hola 👋 Soy el asistente virtual de flowrecIA. Puedo ayudarte a
             conocer servicios, solicitar una cotización o contactar al equipo.
           </div>
         </div>
@@ -952,9 +967,9 @@
     <footer>
       <div class="container footer-grid">
         <p>
-          © <span id="year"></span> MIA Coding. Todos los derechos reservados.
+          © <span id="year"></span> flowrecIA. Todos los derechos reservados.
         </p>
-        <p>Soluciones inteligentes. Resultados reales.</p>
+        <p>Optimizando tu negocio con IA</p>
         <a href="contacto/index.html">Contacto</a>
       </div>
     </footer>

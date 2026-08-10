@@ -62,7 +62,7 @@ Configuración:
 4. Conserva sales_recipient como bshgroupcrm@gmail.com.
 5. Si se habilitará el asistente, configura también la clave de Gemini.
 6. Sube el contenido del proyecto a la carpeta pública asignada al dominio.
-7. Comprueba que https://ia-softworks.mx/api/contact.php responda con
+7. Comprueba que https://flowrecia.com/api/contact.php responda con
    "Método no permitido" al abrirla directamente; eso confirma que PHP se ejecuta.
 8. Envía una solicitud real desde el formulario y comprueba su llegada a
    bshgroupcrm@gmail.com.

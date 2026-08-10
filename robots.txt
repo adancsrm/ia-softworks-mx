@@ -4,4 +4,4 @@ Disallow: /api/
 Disallow: /data/
 Disallow: /index1.html
 
-Sitemap: https://ia-softworks.mx/sitemap.xml
+Sitemap: https://flowrecia.com/sitemap.xml

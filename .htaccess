@@ -4,8 +4,8 @@ RewriteEngine On
 
 # En producción se utiliza un único origen canónico y conexión cifrada.
 RewriteCond %{HTTPS} !=on [OR]
-RewriteCond %{HTTP_HOST} !^ia-softworks\.mx$ [NC]
-RewriteRule ^ https://ia-softworks.mx%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTP_HOST} !^flowrecia\.com$ [NC]
+RewriteRule ^ https://flowrecia.com%{REQUEST_URI} [R=301,L]
 
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"

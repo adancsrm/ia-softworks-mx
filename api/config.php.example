@@ -5,6 +5,12 @@
 return [
     'api_key' => 'PEGA_AQUI_TU_CLAVE_DE_GEMINI',
     'model' => 'gemini-3.5-flash',
-    'resend_api_key' => 'PEGA_AQUI_TU_CLAVE_DE_RESEND',
-    'sales_recipient' => 'bshgroupcrm@gmail.com',
+    'sales_recipient' => 'ventas@flowrecia.com',
+    'smtp_host' => 'mail.flowrecia.com',
+    'smtp_username' => 'ventas@flowrecia.com',
+    'smtp_password' => 'PEGA_AQUI_TU_PASSWORD_SMTP',
+    'smtp_port' => 465,
+    'smtp_secure' => 'ssl', // 'ssl' (puerto 465) o 'tls' (puerto 587)
+    'smtp_from_email' => 'ventas@flowrecia.com',
+    'smtp_from_name' => 'flowrecIA - Sitio web',
 ];

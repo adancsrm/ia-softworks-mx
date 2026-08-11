@@ -2,6 +2,10 @@ Options -Indexes
 
 RewriteEngine On
 
+# En desarrollo local no forzamos el dominio canónico.
+RewriteCond %{HTTP_HOST} ^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
+RewriteRule ^ - [L]
+
 # En producción se utiliza un único origen canónico y conexión cifrada.
 RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} !^flowrecia\.com$ [NC]

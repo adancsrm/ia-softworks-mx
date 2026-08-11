@@ -2,6 +2,11 @@
 
 declare(strict_types=1);
 
+require __DIR__ . '/../vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception as PHPMailerException;
+
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 header('X-Content-Type-Options: nosniff');
@@ -79,18 +84,35 @@ if ($privacidad !== 'acepto') {
     respond(422, 'Debes aceptar el aviso de privacidad.');
 }
 
-$apiKey = getenv('RESEND_API_KEY') ?: '';
-$recipient = getenv('SALES_RECIPIENT') ?: 'bshgroupcrm@gmail.com';
+$recipient = getenv('SALES_RECIPIENT') ?: 'ventas@flowrecia.com';
+$smtpHost = getenv('SMTP_HOST') ?: '';
+$smtpUsername = getenv('SMTP_USERNAME') ?: '';
+$smtpPassword = getenv('SMTP_PASSWORD') ?: '';
+$smtpPort = (int)(getenv('SMTP_PORT') ?: 465);
+$smtpSecure = getenv('SMTP_SECURE') ?: PHPMailer::ENCRYPTION_SMTPS;
+$smtpFromEmail = getenv('SMTP_FROM_EMAIL') ?: '';
+$smtpFromName = getenv('SMTP_FROM_NAME') ?: 'flowrecIA - Sitio web';
+
 $configFile = __DIR__ . '/config.php';
 if (is_file($configFile)) {
     $config = require $configFile;
     if (is_array($config)) {
-        $apiKey = (string)($config['resend_api_key'] ?? $apiKey);
         $recipient = (string)($config['sales_recipient'] ?? $recipient);
+        $smtpHost = (string)($config['smtp_host'] ?? $smtpHost);
+        $smtpUsername = (string)($config['smtp_username'] ?? $smtpUsername);
+        $smtpPassword = (string)($config['smtp_password'] ?? $smtpPassword);
+        $smtpPort = (int)($config['smtp_port'] ?? $smtpPort);
+        $smtpSecure = (string)($config['smtp_secure'] ?? $smtpSecure);
+        $smtpFromEmail = (string)($config['smtp_from_email'] ?? $smtpFromEmail);
+        $smtpFromName = (string)($config['smtp_from_name'] ?? $smtpFromName);
     }
 }
 
-if ($apiKey === '' || $apiKey === 'PEGA_AQUI_TU_CLAVE_DE_RESEND') {
+if ($smtpFromEmail === '') {
+    $smtpFromEmail = $smtpUsername;
+}
+
+if ($smtpHost === '' || $smtpUsername === '' || $smtpPassword === '' || $smtpPassword === 'PEGA_AQUI_TU_PASSWORD_SMTP') {
     respond(503, 'El servicio de correo todavía no está configurado.');
 }
 if (!filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
@@ -123,42 +145,31 @@ $body = '<h2>Nueva solicitud de cotización</h2>'
     . '<p><strong>Presupuesto estimado:</strong> ' . html($presupuesto) . '</p>'
     . '<p><strong>Descripción del proyecto:</strong><br>' . nl2br(html($descripcion)) . '</p>';
 
-$payload = [
-    'from' => 'flowrecIA <contacto@ia-softworks.mx>',
-    'to' => [$recipient],
-    'reply_to' => $email,
-    'subject' => 'Solicitud de cotización - ' . $subjectName,
-    'html' => $body,
-];
+$mail = new PHPMailer(true);
+try {
+    $mail->isSMTP();
+    $mail->Host = $smtpHost;
+    $mail->SMTPAuth = true;
+    $mail->Username = $smtpUsername;
+    $mail->Password = $smtpPassword;
+    $mail->SMTPSecure = $smtpSecure;
+    $mail->Port = $smtpPort;
+    $mail->CharSet = 'UTF-8';
 
-$curl = curl_init('https://api.resend.com/emails');
-if ($curl === false) {
-    respond(500, 'No fue posible iniciar el servicio de correo.');
-}
+    $mail->setFrom($smtpFromEmail, $smtpFromName);
+    $mail->addAddress($recipient);
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $mail->addReplyTo($email, $nombre);
+    }
 
-curl_setopt_array($curl, [
-    CURLOPT_POST => true,
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_CONNECTTIMEOUT => 10,
-    CURLOPT_TIMEOUT => 25,
-    CURLOPT_HTTPHEADER => [
-        'Authorization: Bearer ' . $apiKey,
-        'Content-Type: application/json',
-    ],
-    CURLOPT_POSTFIELDS => json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
-]);
+    $mail->isHTML(true);
+    $mail->Subject = 'Solicitud de cotización - ' . $subjectName;
+    $mail->Body = $body;
+    $mail->AltBody = strip_tags(str_replace(['<br>', '</p>'], "\n", $body));
 
-$response = curl_exec($curl);
-$status = (int)curl_getinfo($curl, CURLINFO_HTTP_CODE);
-$curlError = curl_error($curl);
-curl_close($curl);
-
-if ($response === false) {
-    error_log('Resend connection error: ' . $curlError);
-    respond(502, 'No fue posible conectar con el servicio de correo.');
-}
-if ($status < 200 || $status >= 300) {
-    error_log('Resend API error HTTP ' . $status . ': ' . $response);
+    $mail->send();
+} catch (PHPMailerException $e) {
+    error_log('PHPMailer error: ' . $mail->ErrorInfo);
     respond(502, 'No fue posible enviar la solicitud en este momento.');
 }
 

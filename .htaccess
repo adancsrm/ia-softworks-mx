@@ -34,3 +34,9 @@ RewriteRule ^ https://flowrecia.com%{REQUEST_URI} [R=301,L]
   ExpiresByType text/css "access plus 7 days"
   ExpiresByType application/javascript "access plus 7 days"
 </IfModule>
+
+<Files "script.js">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "no-cache, max-age=0, must-revalidate"
+  </IfModule>
+</Files>

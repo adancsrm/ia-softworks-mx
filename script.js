@@ -1,4 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
+  /*
+   * =========================================================
+   * MEDICIÓN GTM / GA4
+   * =========================================================
+   *
+   * Los eventos se envían al dataLayer y Google Tag Manager
+   * decide cuáles mandar posteriormente a Google Analytics.
+   */
+
+  window.dataLayer = window.dataLayer || [];
+
+  function trackEvent(eventName, parameters = {}) {
+    window.dataLayer.push({
+      event: eventName,
+      ...parameters,
+    });
+  }
+
   const siteScript = document.querySelector('script[src$="script.js"]');
   const privacyUrl = siteScript
     ? new URL("privacidad/index.html", siteScript.src).href
@@ -33,6 +51,50 @@ document.addEventListener("DOMContentLoaded", function () {
     relValues.add("noopener");
     relValues.add("noreferrer");
     link.setAttribute("rel", Array.from(relValues).join(" "));
+  });
+
+  /*
+   * =========================================================
+   * CLICS DE CONTACTO
+   * =========================================================
+   *
+   * No enviamos el número telefónico, correo ni URL completa
+   * al dataLayer para evitar mandar datos identificables a GA4.
+   */
+
+  document.addEventListener("click", function (event) {
+    const clickedElement =
+      event.target instanceof Element ? event.target : null;
+    const link = clickedElement?.closest("a[href]");
+
+    if (!link) return;
+
+    const href = (link.getAttribute("href") || "").trim().toLowerCase();
+
+    if (
+      href.startsWith("https://wa.me/") ||
+      href.startsWith("http://wa.me/") ||
+      href.includes("api.whatsapp.com/") ||
+      href.startsWith("whatsapp:")
+    ) {
+      trackEvent("whatsapp_click", {
+        contact_method: "whatsapp",
+      });
+      return;
+    }
+
+    if (href.startsWith("tel:")) {
+      trackEvent("phone_click", {
+        contact_method: "phone",
+      });
+      return;
+    }
+
+    if (href.startsWith("mailto:")) {
+      trackEvent("email_click", {
+        contact_method: "email",
+      });
+    }
   });
 
   /*
@@ -119,6 +181,15 @@ document.addEventListener("DOMContentLoaded", function () {
           throw new Error(result.error || "No fue posible enviar la solicitud.");
         }
 
+        /*
+         * Conversión principal:
+         * solo se registra cuando api/contact.php respondió correctamente.
+         */
+        trackEvent("generate_lead", {
+          lead_source: "quote_form",
+          form_id: quoteForm.id || "quoteForm",
+        });
+
         form.reset();
         if (quoteNote) {
           quoteNote.textContent =
@@ -153,6 +224,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const assistantMessages = document.getElementById("assistantMessages");
 
   const assistantHistory = [];
+  let chatOpenTracked = false;
+  let chatInteractionTracked = false;
 
   const assistantScript = document.querySelector(
     'script[src$="script.js"]',
@@ -165,13 +238,23 @@ document.addEventListener("DOMContentLoaded", function () {
   function toggleAssistant(forceOpen) {
     if (!assistantPanel) return;
 
+    const wasOpen = assistantPanel.classList.contains("is-open");
+
     const shouldOpen =
       typeof forceOpen === "boolean"
         ? forceOpen
-        : !assistantPanel.classList.contains("is-open");
+        : !wasOpen;
 
     assistantPanel.classList.toggle("is-open", shouldOpen);
     assistantToggle?.setAttribute("aria-expanded", String(shouldOpen));
+
+    if (shouldOpen && !wasOpen && !chatOpenTracked) {
+      chatOpenTracked = true;
+
+      trackEvent("chat_open", {
+        chat_name: "flowrecia_assistant",
+      });
+    }
   }
 
   function addAssistantMessage(text, type) {
@@ -254,6 +337,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function askAssistant(question) {
     if (!question) return;
+
+    if (!chatInteractionTracked) {
+      chatInteractionTracked = true;
+
+      trackEvent("chat_interaction", {
+        chat_name: "flowrecia_assistant",
+      });
+    }
 
     addAssistantMessage(question, "user");
     addTypingIndicator();

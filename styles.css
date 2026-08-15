@@ -406,6 +406,72 @@ a {
   display: grid;
   gap: 8px;
 }
+
+/* Landing de consultoría */
+.hero-copy .consulting-title {
+  max-width: none;
+}
+.consulting-title span {
+  display: block;
+  white-space: nowrap;
+}
+.consulting-content {
+  max-width: 920px;
+  margin: 0 auto;
+}
+.consulting-content > p {
+  color: var(--muted);
+  font-size: 1.08rem;
+  margin-bottom: 18px;
+}
+.consulting-content h2 {
+  font-size: clamp(2rem, 4.3vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  margin: 64px 0 20px;
+}
+.consulting-content h3 {
+  font-size: clamp(1.45rem, 2.5vw, 2.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  margin: 42px 0 16px;
+}
+.consulting-content ul,
+.consulting-content ol {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 28px 24px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+.consulting-areas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+.consulting-areas .panel h4 {
+  margin: 0 0 12px;
+  font-size: 1.35rem;
+  letter-spacing: -0.025em;
+}
+.consulting-cta {
+  margin-top: 48px;
+  text-align: center;
+}
+.consulting-cta p {
+  max-width: 760px;
+  margin: 0 auto 24px;
+  font-size: 1.2rem;
+}
+@media (max-width: 700px) {
+  .consulting-title span {
+    white-space: normal;
+  }
+  .consulting-areas {
+    grid-template-columns: 1fr;
+  }
+}
 .visual-main,
 .art {
   min-height: 420px;

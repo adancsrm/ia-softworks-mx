@@ -103,6 +103,47 @@ document.addEventListener("DOMContentLoaded", function () {
    * =========================================================
    */
 
+  const quoteFormTemplate = `
+    <form id="quoteForm">
+      <div class="form-grid">
+        <label>Nombre o empresa<input name="nombre" placeholder="Ej. AQUA NARVAL" required type="text"></label>
+        <label>Persona de contacto<input name="contacto" placeholder="Ej. Lic. Eduardo Serrano" required type="text"></label>
+      </div>
+      <div class="form-grid">
+        <label>Correo electrónico<input name="email" placeholder="correo@empresa.com" required type="email"></label>
+        <label>Teléfono / WhatsApp<input name="telefono" placeholder="55 0000 0000" required type="tel"></label>
+      </div>
+      <div class="form-grid">
+        <label>Servicio de interés
+          <select name="servicio" required>
+            <option value="">Selecciona una opción</option>
+            <option>Punto de venta POS</option>
+            <option>Tienda en línea</option>
+            <option>Chatbot / Agente IA</option>
+            <option>Sistema de cotización</option>
+            <option>Facturación / reportes</option>
+            <option>Automatización administrativa</option>
+            <option>Mejora a sistema existente</option>
+            <option>Desarrollo de software a medida</option>
+            <option>Sitio web</option>
+            <option>Google Ads</option>
+            <option>Redes sociales</option>
+            <option>Campañas publicitarias</option>
+          </select>
+        </label>
+        <label>Presupuesto estimado<input name="presupuesto" placeholder="Ej. $6,000 MXN o por definir" type="text"></label>
+      </div>
+      <label>Descripción del proyecto
+        <textarea name="descripcion" placeholder="Describe qué necesitas, tiempos, procesos actuales, reportes, usuarios, etc." required></textarea>
+      </label>
+      <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+    </form>
+  `;
+
+  document.querySelectorAll("[data-quote-form]").forEach(function (mountPoint) {
+    mountPoint.innerHTML = quoteFormTemplate;
+  });
+
   const quoteForm = document.getElementById("quoteForm");
 
   if (quoteForm) {

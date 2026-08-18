@@ -1196,3 +1196,358 @@ footer {
   border-radius: 28px;
   min-height: 360px;
 }
+/* =========================================================
+   SEO 2026 — Componentes de contenido
+   Reutilizados en páginas de servicios, blog y páginas internas.
+   ========================================================= */
+
+/* Contenedor principal para contenido editorial largo */
+.content-wrap {
+  width: min(100%, 920px);
+  margin: 0 auto;
+}
+
+/* Fecha y metadatos del contenido */
+.content-meta {
+  width: min(100%, 920px);
+  margin: 0 auto 24px;
+  color: var(--muted);
+  font-family: "Anthropic Sans", Arial, sans-serif;
+  font-size: 0.9rem;
+}
+
+.content-meta p {
+  margin: 0;
+}
+
+.content-meta time {
+  color: var(--text);
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   Tabla de contenidos
+   ========================================================= */
+
+.page-toc {
+  width: min(100%, 920px);
+  margin: 0 auto 42px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 12px 30px rgba(17, 17, 17, 0.04);
+}
+
+.page-toc strong {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--text);
+  font-family: "Anthropic Sans", Arial, sans-serif;
+  font-size: 1rem;
+}
+
+.page-toc ul {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.page-toc li {
+  color: var(--muted);
+}
+
+.page-toc a {
+  color: var(--primary-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.page-toc a:hover,
+.page-toc a:focus-visible {
+  color: var(--primary);
+}
+
+
+/* =========================================================
+   Contenido editorial SEO
+   ========================================================= */
+
+.content-section {
+  width: min(100%, 920px);
+  margin: 0 auto;
+  padding: 34px 0;
+}
+
+.content-section + .content-section {
+  border-top: 1px solid var(--border);
+}
+
+.content-section h2 {
+  margin: 0 0 18px;
+  font-size: clamp(1.8rem, 3.4vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.content-section h3 {
+  margin: 28px 0 12px;
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.content-section p {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.content-section ul,
+.content-section ol {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 22px;
+  padding-left: 24px;
+  color: var(--muted);
+  font-size: 1.03rem;
+  line-height: 1.65;
+}
+
+.content-section strong {
+  color: var(--text);
+}
+
+.content-section a {
+  color: var(--primary-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.content-section a:hover,
+.content-section a:focus-visible {
+  color: var(--primary);
+}
+
+
+/* =========================================================
+   Preguntas frecuentes
+   ========================================================= */
+
+.faq-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.faq-item {
+  padding: 22px 24px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.faq-item h3 {
+  margin: 0 0 10px;
+  font-size: 1.18rem;
+  line-height: 1.25;
+}
+
+.faq-item p {
+  margin: 0;
+}
+
+
+/* =========================================================
+   Fuentes y referencias
+   ========================================================= */
+
+.sources-list {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding-left: 22px;
+}
+
+.sources-list li {
+  color: var(--muted);
+}
+
+.sources-list a {
+  color: var(--primary-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sources-list a:hover,
+.sources-list a:focus-visible {
+  color: var(--primary);
+}
+
+
+/* =========================================================
+   Breadcrumbs
+   ========================================================= */
+
+.breadcrumbs {
+  padding: 16px 0 0;
+  color: var(--muted);
+  font-family: "Anthropic Sans", Arial, sans-serif;
+  font-size: 0.88rem;
+}
+
+.breadcrumbs ol {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumbs li:not(:last-child)::after {
+  content: "/";
+  color: rgba(20, 20, 19, 0.35);
+}
+
+.breadcrumbs a {
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.breadcrumbs a:hover,
+.breadcrumbs a:focus-visible {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.breadcrumbs [aria-current="page"] {
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   Video responsive / YouTube
+   ========================================================= */
+
+.video-embed {
+  position: relative;
+  width: 100%;
+  margin: 24px 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: var(--text);
+  box-shadow: 0 16px 40px rgba(17, 17, 17, 0.08);
+  aspect-ratio: 16 / 9;
+}
+
+.video-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+/* =========================================================
+   Testimonios y reputación
+   ========================================================= */
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 12px 30px rgba(17, 17, 17, 0.04);
+}
+
+.testimonial-card blockquote {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.testimonial-card p {
+  margin: auto 0 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.testimonial-card strong {
+  color: var(--text);
+}
+
+
+/* =========================================================
+   Responsive para componentes SEO
+   ========================================================= */
+
+@media (max-width: 860px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .content-section {
+    padding: 28px 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-toc {
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 32px;
+  }
+
+  .content-section h2 {
+    font-size: clamp(1.7rem, 9vw, 2.3rem);
+  }
+
+  .content-section p,
+  .content-section ul,
+  .content-section ol {
+    font-size: 1rem;
+  }
+
+  .faq-item {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .breadcrumbs {
+    font-size: 0.82rem;
+  }
+
+  .video-embed {
+    border-radius: 20px;
+  }
+}

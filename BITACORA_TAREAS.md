@@ -58,8 +58,18 @@ aprobaciones ni propagación del dominio.
 
 - [x] SEO-01 Base visual SEO
   - Se agregaron estilos reutilizables para contenido editorial, tabla de contenidos, fecha de actualización, FAQ, fuentes, breadcrumbs, video responsive y testimonios.
-- [ ] SEO-02 Contenido piloto Sitios Web
+- [x] SEO-02 Contenido piloto Sitios Web
 - [ ] SEO-03 Contenido páginas de servicio
+  - [x] SEO-03A Google Ads
+  - [ ] SEO-03B Campañas publicitarias
+  - [ ] SEO-03C Redes sociales
+  - [ ] SEO-03D Chatbots IA
+  - [ ] SEO-03E Agentes online
+  - [ ] SEO-03F Plataforma de cotización
+  - [ ] SEO-03G Tienda en línea
+  - [ ] SEO-03H Facturación
+  - [ ] SEO-03I Automatización
+  - [ ] SEO-03J Consultoría
 - [ ] SEO-04 Reducir contenido repetido
 - [ ] SEO-05 Breadcrumbs
 - [ ] SEO-06 Schema.org

@@ -1689,7 +1689,13 @@ footer {
 #seo-desarrollo,
 #tipos-sitios,
 #preguntas-frecuentes,
-#fuentes {
+#fuentes,
+#que-incluye-google-ads,
+#proceso-google-ads,
+#automatizacion-google-ads,
+#metricas-google-ads,
+#preguntas-google-ads,
+#fuentes-google-ads {
   scroll-margin-top: 110px;
 }
 

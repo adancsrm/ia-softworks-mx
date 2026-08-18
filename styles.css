@@ -1551,3 +1551,166 @@ footer {
     border-radius: 20px;
   }
 }
+/* =========================================================
+   SEO-02 — Contenido progresivo / acordeones
+   ========================================================= */
+
+.seo-details-section {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.seo-detail {
+  width: min(100%, 920px);
+  margin: 0 auto 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.82);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.seo-detail:hover {
+  border-color: rgba(201, 84, 28, 0.28);
+}
+
+.seo-detail[open] {
+  box-shadow: 0 14px 34px rgba(17, 17, 17, 0.05);
+}
+
+.seo-detail summary,
+.page-toc summary,
+.faq-item summary {
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  color: var(--text);
+  font-family: "Anthropic Sans", Arial, sans-serif;
+  font-weight: 700;
+}
+
+.seo-detail summary::-webkit-details-marker,
+.page-toc summary::-webkit-details-marker,
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.seo-detail > summary {
+  padding: 22px 56px 22px 24px;
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+
+.seo-detail summary::after,
+.page-toc summary::after,
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 22px;
+  transform: translateY(-50%);
+  color: var(--primary-dark);
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.seo-detail[open] > summary::after,
+.page-toc[open] > summary::after,
+.faq-item[open] > summary::after {
+  content: "−";
+}
+
+.seo-detail-content {
+  padding: 0 24px 24px;
+}
+
+.seo-detail-content p {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.seo-detail-content p:last-child {
+  margin-bottom: 0;
+}
+
+.seo-detail-content ul,
+.seo-detail-content ol {
+  display: grid;
+  gap: 10px;
+  margin: 6px 0 18px;
+  padding-left: 24px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.seo-detail-content strong {
+  color: var(--text);
+}
+
+
+/* Tabla de contenidos plegable */
+
+.page-toc > summary {
+  padding-right: 42px;
+}
+
+.page-toc[open] > summary {
+  margin-bottom: 14px;
+}
+
+
+/* FAQ plegable */
+
+.faq-item {
+  display: block;
+}
+
+.faq-item > summary {
+  padding-right: 42px;
+}
+
+.faq-item[open] > summary {
+  margin-bottom: 12px;
+}
+
+.faq-item > p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+
+/* Scroll al navegar mediante tabla de contenidos */
+
+#que-incluye,
+#proceso-desarrollo,
+#seo-desarrollo,
+#tipos-sitios,
+#preguntas-frecuentes,
+#fuentes {
+  scroll-margin-top: 110px;
+}
+
+
+@media (max-width: 560px) {
+
+  .seo-detail {
+    border-radius: 18px;
+  }
+
+  .seo-detail > summary {
+    padding: 20px 50px 20px 20px;
+    font-size: 1rem;
+  }
+
+  .seo-detail-content {
+    padding: 0 20px 20px;
+  }
+
+  .seo-detail-content p {
+    font-size: 0.98rem;
+  }
+
+}

@@ -1695,7 +1695,13 @@ footer {
 #automatizacion-google-ads,
 #metricas-google-ads,
 #preguntas-google-ads,
-#fuentes-google-ads {
+#fuentes-google-ads,
+#que-incluyen-campanas,
+#segmentacion-campanas,
+#automatizacion-campanas,
+#metricas-campanas,
+#preguntas-campanas,
+#fuentes-campanas {
   scroll-margin-top: 110px;
 }
 

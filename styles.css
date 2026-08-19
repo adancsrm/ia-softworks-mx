@@ -1725,7 +1725,13 @@ footer {
 #flujo-cotizacion,
 #integraciones-cotizacion,
 #preguntas-plataforma-cotizacion,
-#fuentes-plataforma-cotizacion {
+#fuentes-plataforma-cotizacion,
+#catalogo-tienda-online,
+#compra-tienda-online,
+#pedidos-inventario-tienda,
+#integraciones-tienda-online,
+#preguntas-tienda-online,
+#fuentes-tienda-online {
   scroll-margin-top: 110px;
 }
 

@@ -1743,7 +1743,13 @@ footer {
 #disparadores-automatizacion,
 #control-medicion-automatizacion,
 #preguntas-automatizacion,
-#fuentes-automatizacion {
+#fuentes-automatizacion,
+#diagnostico-consultoria-ia,
+#priorizacion-consultoria-ia,
+#piloto-consultoria-ia,
+#medicion-consultoria-ia,
+#preguntas-consultoria-ia,
+#fuentes-consultoria-ia {
   scroll-margin-top: 110px;
 }
 

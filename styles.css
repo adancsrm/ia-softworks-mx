@@ -1737,7 +1737,13 @@ footer {
 #validacion-facturas,
 #flujo-facturacion,
 #preguntas-facturacion,
-#fuentes-facturacion {
+#fuentes-facturacion,
+#proceso-automatizable,
+#diseno-flujo-automatizacion,
+#disparadores-automatizacion,
+#control-medicion-automatizacion,
+#preguntas-automatizacion,
+#fuentes-automatizacion {
   scroll-margin-top: 110px;
 }
 

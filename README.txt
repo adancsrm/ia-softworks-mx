@@ -23,19 +23,19 @@ mi-sitio-ia-softworks-mx/
 
 Todas las páginas conservan logo, nombre, sedes, contacto, formulario de cotización y asistente virtual. El contacto heredado de Alan Rodríguez debe permanecer retirado. El número directo o WhatsApp del responsable se incorporará únicamente cuando haya sido confirmado.
 
-INTEGRACIÓN CON GEMINI API
---------------------------
-El asistente virtual ya consulta Gemini mediante api/chat.php.
+INTEGRACIÓN CON CLAUDE API (ANTHROPIC)
+---------------------------------------
+El asistente virtual ya consulta Claude mediante api/chat.php.
 
 Configuración rápida para hosting con PHP:
 1. Confirma que el servidor tenga PHP 8+, cURL y mbstring.
 2. Copia api/config.php.example como api/config.php.
-3. Abre api/config.php y sustituye PEGA_AQUI_TU_CLAVE_DE_GEMINI por tu clave.
+3. Abre api/config.php y sustituye PEGA_AQUI_TU_CLAVE_DE_ANTHROPIC por tu clave.
 4. Sube el proyecto completo al hosting mediante HTTPS.
 5. Abre el sitio desde el servidor. La API no funciona abriendo index.html directamente con file://.
 
-Alternativa recomendada: define GEMINI_API_KEY como variable de entorno del servidor.
-También puedes definir GEMINI_MODEL; el valor predeterminado es gemini-3-flash-preview.
+Alternativa recomendada: define ANTHROPIC_API_KEY como variable de entorno del servidor.
+También puedes definir ANTHROPIC_MODEL; el valor predeterminado es claude-haiku-4-5.
 
 La información empresarial que utiliza el asistente está en:
 data/informacion-empresa.txt
@@ -60,7 +60,7 @@ Configuración:
 2. Copia api/config.php.example como api/config.php.
 3. Sustituye PEGA_AQUI_TU_CLAVE_DE_RESEND por la API key real.
 4. Conserva sales_recipient como bshgroupcrm@gmail.com.
-5. Si se habilitará el asistente, configura también la clave de Gemini.
+5. Si se habilitará el asistente, configura también la clave de Claude (Anthropic).
 6. Sube el contenido del proyecto a la carpeta pública asignada al dominio.
 7. Comprueba que https://flowrecia.com/api/contact.php responda con
    "Método no permitido" al abrirla directamente; eso confirma que PHP se ejecuta.
@@ -69,7 +69,7 @@ Configuración:
 
 api/config.php contiene secretos y está excluido mediante .gitignore. No debe
 subirse a Git. Como alternativa, el servidor puede definir RESEND_API_KEY,
-SALES_RECIPIENT, GEMINI_API_KEY y GEMINI_MODEL como variables de entorno.
+SALES_RECIPIENT, ANTHROPIC_API_KEY y ANTHROPIC_MODEL como variables de entorno.
 
 Los mensajes se envían desde flowrecIA <contacto@ia-softworks.mx> hacia
 bshgroupcrm@gmail.com. El correo del visitante se configura como dirección de

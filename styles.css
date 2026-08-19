@@ -1701,7 +1701,13 @@ footer {
 #automatizacion-campanas,
 #metricas-campanas,
 #preguntas-campanas,
-#fuentes-campanas {
+#fuentes-campanas,
+#estrategia-redes,
+#contenido-redes,
+#automatizacion-redes,
+#metricas-redes,
+#preguntas-redes,
+#fuentes-redes {
   scroll-margin-top: 110px;
 }
 

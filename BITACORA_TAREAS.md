@@ -61,8 +61,8 @@ aprobaciones ni propagación del dominio.
 - [x] SEO-02 Contenido piloto Sitios Web
 - [ ] SEO-03 Contenido páginas de servicio
   - [x] SEO-03A Google Ads
-  - [ ] SEO-03B Campañas publicitarias
-  - [ ] SEO-03C Redes sociales
+  - [x] SEO-03B Campañas publicitarias
+  - [x] SEO-03C Redes sociales
   - [ ] SEO-03D Chatbots IA
   - [ ] SEO-03E Agentes online
   - [ ] SEO-03F Plataforma de cotización

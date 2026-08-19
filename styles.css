@@ -1713,7 +1713,13 @@ footer {
 #captacion-chatbot,
 #integraciones-chatbot,
 #preguntas-chatbots,
-#fuentes-chatbots {
+#fuentes-chatbots,
+#que-es-agente-ia,
+#tareas-agente-ia,
+#integraciones-agente-ia,
+#control-agente-ia,
+#preguntas-agentes,
+#fuentes-agentes {
   scroll-margin-top: 110px;
 }
 

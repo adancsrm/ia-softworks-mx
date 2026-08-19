@@ -1731,7 +1731,13 @@ footer {
 #pedidos-inventario-tienda,
 #integraciones-tienda-online,
 #preguntas-tienda-online,
-#fuentes-tienda-online {
+#fuentes-tienda-online,
+#recepcion-facturas,
+#extraccion-datos-facturas,
+#validacion-facturas,
+#flujo-facturacion,
+#preguntas-facturacion,
+#fuentes-facturacion {
   scroll-margin-top: 110px;
 }
 

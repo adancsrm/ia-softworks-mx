@@ -1719,7 +1719,13 @@ footer {
 #integraciones-agente-ia,
 #control-agente-ia,
 #preguntas-agentes,
-#fuentes-agentes {
+#fuentes-agentes,
+#funcion-plataforma-cotizacion,
+#reglas-cotizacion,
+#flujo-cotizacion,
+#integraciones-cotizacion,
+#preguntas-plataforma-cotizacion,
+#fuentes-plataforma-cotizacion {
   scroll-margin-top: 110px;
 }
 

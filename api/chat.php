@@ -43,8 +43,10 @@ if (count($recentRequests) >= 12) {
 $recentRequests[] = $now;
 $_SESSION['assistant_requests'] = $recentRequests;
 
-$apiKey = getenv('GEMINI_API_KEY') ?: '';
-$model = getenv('GEMINI_MODEL') ?: 'gemini-3.5-flash';
+// getenv() solo ve las variables definidas vía SetEnv cuando PHP corre como
+// modulo de Apache (mod_php); bajo PHP-FPM/CGI, SetEnv solo llena $_SERVER.
+$apiKey = getenv('ANTHROPIC_API_KEY') ?: (string)($_SERVER['ANTHROPIC_API_KEY'] ?? '');
+$model = getenv('ANTHROPIC_MODEL') ?: (string)($_SERVER['ANTHROPIC_MODEL'] ?? 'claude-haiku-4-5');
 
 // Alternativa para hosting compartido sin variables de entorno:
 // copia config.php.example como config.php y agrega ahí tu clave.
@@ -60,7 +62,7 @@ if (is_file($configFile)) {
 if ($apiKey === '') {
     http_response_code(503);
     echo json_encode([
-        'error' => 'El asistente todavía no tiene configurada la clave de Gemini.'
+        'error' => 'El asistente todavía no tiene configurada la clave de Claude.'
     ], JSON_UNESCAPED_UNICODE);
     exit;
 }
@@ -104,7 +106,7 @@ INFORMACIÓN DE IA SOFTWORKS MX:
 {$companyKnowledge}
 TEXT;
 
-$contents = [];
+$messages = [];
 $history = $input['history'] ?? [];
 if (is_array($history)) {
     // Conserva como máximo los últimos 8 mensajes para dar contexto sin elevar demasiado el consumo.
@@ -112,37 +114,32 @@ if (is_array($history)) {
         if (!is_array($item)) {
             continue;
         }
-        $role = ($item['role'] ?? '') === 'assistant' ? 'model' : 'user';
+        $role = ($item['role'] ?? '') === 'assistant' ? 'assistant' : 'user';
         $text = trim((string)($item['text'] ?? ''));
         if ($text === '') {
             continue;
         }
-        $contents[] = [
+        $messages[] = [
             'role' => $role,
-            'parts' => [['text' => mb_substr($text, 0, 1200)]],
+            'content' => mb_substr($text, 0, 1200),
         ];
     }
 }
 
-$contents[] = [
+$messages[] = [
     'role' => 'user',
-    'parts' => [['text' => $message]],
+    'content' => $message,
 ];
 
 $payload = [
-    'systemInstruction' => [
-        'parts' => [['text' => $systemInstruction]],
-    ],
-    'contents' => $contents,
-    'generationConfig' => [
-        'temperature' => 0.25,
-        'maxOutputTokens' => 450,
-    ],
+    'model' => $model,
+    'system' => $systemInstruction,
+    'messages' => $messages,
+    'temperature' => 0.25,
+    'max_tokens' => 450,
 ];
 
-$url = 'https://generativelanguage.googleapis.com/v1beta/models/'
-    . rawurlencode($model)
-    . ':generateContent';
+$url = 'https://api.anthropic.com/v1/messages';
 
 $ch = curl_init($url);
 if ($ch === false) {
@@ -167,7 +164,8 @@ curl_setopt_array($ch, [
     CURLOPT_SSL_VERIFYHOST => $allowInsecureLocalTls ? 0 : 2,
     CURLOPT_HTTPHEADER => [
         'Content-Type: application/json',
-        'x-goog-api-key: ' . $apiKey,
+        'x-api-key: ' . $apiKey,
+        'anthropic-version: 2023-06-01',
     ],
     CURLOPT_POSTFIELDS => json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
 ]);
@@ -180,7 +178,7 @@ curl_close($ch);
 if ($response === false) {
     http_response_code(502);
     echo json_encode([
-        'error' => 'No fue posible contactar a Gemini.',
+        'error' => 'No fue posible contactar a Claude.',
         'detail' => $curlError,
     ], JSON_UNESCAPED_UNICODE);
     exit;
@@ -188,23 +186,23 @@ if ($response === false) {
 
 $data = json_decode($response, true);
 if ($status < 200 || $status >= 300) {
-    error_log('Gemini API error HTTP ' . $status . ': ' . $response);
+    error_log('Claude API error HTTP ' . $status . ': ' . $response);
     $upstreamMessage = $allowInsecureLocalTls
         ? trim((string)($data['error']['message'] ?? ''))
         : '';
     http_response_code(502);
     echo json_encode([
         'error' => $upstreamMessage !== ''
-            ? 'Gemini: ' . $upstreamMessage
-            : 'Gemini no pudo responder en este momento. Revisa la clave, el modelo y la cuota disponible.'
+            ? 'Claude: ' . $upstreamMessage
+            : 'Claude no pudo responder en este momento. Revisa la clave, el modelo y la cuota disponible.'
     ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-$answer = trim((string)($data['candidates'][0]['content']['parts'][0]['text'] ?? ''));
+$answer = trim((string)($data['content'][0]['text'] ?? ''));
 if ($answer === '') {
     http_response_code(502);
-    echo json_encode(['error' => 'Gemini devolvió una respuesta vacía.'], JSON_UNESCAPED_UNICODE);
+    echo json_encode(['error' => 'Claude devolvió una respuesta vacía.'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 

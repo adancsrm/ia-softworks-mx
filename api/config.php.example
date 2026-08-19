@@ -3,8 +3,8 @@
 // Renombra este archivo como config.php y sustituye la clave de ejemplo.
 // No publiques ni compartas config.php.
 return [
-    'api_key' => 'PEGA_AQUI_TU_CLAVE_DE_GEMINI',
-    'model' => 'gemini-3.5-flash',
+    'api_key' => 'PEGA_AQUI_TU_CLAVE_DE_ANTHROPIC',
+    'model' => 'claude-haiku-4-5',
     'sales_recipient' => 'ventas@flowrecia.com',
     'smtp_host' => 'mail.flowrecia.com',
     'smtp_username' => 'ventas@flowrecia.com',

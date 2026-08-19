@@ -63,9 +63,9 @@ aprobaciones ni propagación del dominio.
   - [x] SEO-03A Google Ads
   - [x] SEO-03B Campañas publicitarias
   - [x] SEO-03C Redes sociales
-  - [ ] SEO-03D Chatbots IA
-  - [ ] SEO-03E Agentes online
-  - [ ] SEO-03F Plataforma de cotización
+  - [x] SEO-03D Chatbots IA
+  - [x] SEO-03E Agentes online
+  - [x] SEO-03F Plataforma de cotización
   - [ ] SEO-03G Tienda en línea
   - [ ] SEO-03H Facturación
   - [ ] SEO-03I Automatización

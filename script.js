@@ -474,6 +474,316 @@ document.addEventListener("DOMContentLoaded", function () {
 
   }
 
+
+  /*
+   * =========================================================
+   * BARRA DE CONTACTO
+   * =========================================================
+   *
+   * Escritorio:
+   * muestra correo, WhatsApp y teléfono sobre el encabezado.
+   *
+   * Móvil:
+   * muestra accesos compactos junto al menú hamburguesa.
+   */
+
+  const siteTopbar = document.querySelector(".topbar");
+  const siteNav = siteTopbar?.querySelector(".nav");
+
+  if (siteTopbar && siteNav) {
+    /*
+     * Barra superior para escritorio.
+     */
+    if (!document.querySelector(".contact-strip")) {
+      const contactStrip = document.createElement("div");
+      contactStrip.className = "contact-strip";
+
+      contactStrip.innerHTML = `
+        <div class="container contact-strip-inner">
+
+          <a
+            class="contact-strip-link"
+            href="mailto:ventas@flowrecia.com"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+            >
+              <path
+                d="M3 5h18v14H3V5Zm1.8 1.8L12 12.1l7.2-5.3H4.8ZM4.5 17.5h15V8.4L12 13.9 4.5 8.4v9.1Z"
+                fill="currentColor"
+              />
+            </svg>
+
+            <span>ventas@flowrecia.com</span>
+          </a>
+
+
+         <div class="contact-strip-phone">
+
+          <a
+            class="contact-action-icon"
+            href="https://wa.me/528332395885"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Enviar WhatsApp al 833 239 5885"
+            title="WhatsApp"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              width="17"
+              height="17"
+            >
+              <path
+                d="M12 2a9.7 9.7 0 0 0-8.3 14.7L2.4 22l5.4-1.4A9.8 9.8 0 1 0 12 2Zm0 17.8a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.1-.2-.3A8 8 0 1 1 12 19.8Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.7-2.4-1.3-3.3-2.9-.3-.4.3-.4.8-1.4.1-.2 0-.4 0-.5l-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 5 4.3.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1-.1-.1-.3-.2-.6-.3Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+
+          <a
+            class="contact-action-icon"
+            href="tel:+528332395885"
+            aria-label="Llamar al 833 239 5885"
+            title="Llamar"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              width="17"
+              height="17"
+            >
+              <path
+                d="M6.6 10.8a15.7 15.7 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.2.6 3.4.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4.2c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.3.6 3.4.1.4 0 .8-.3 1.1l-2.2 2.1Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+
+          <span>833 239 5885</span>
+
+        </div>
+
+
+        <div class="contact-strip-phone">
+
+          <a
+            class="contact-action-icon"
+            href="https://wa.me/525534137179"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Enviar WhatsApp al 55 3413 7179"
+            title="WhatsApp"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              width="17"
+              height="17"
+            >
+              <path
+                d="M12 2a9.7 9.7 0 0 0-8.3 14.7L2.4 22l5.4-1.4A9.8 9.8 0 1 0 12 2Zm0 17.8a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.1-.2-.3A8 8 0 1 1 12 19.8Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.7-2.4-1.3-3.3-2.9-.3-.4.3-.4.8-1.4.1-.2 0-.4 0-.5l-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 5 4.3.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1-.1-.1-.3-.2-.6-.3Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+
+          <a
+            class="contact-action-icon"
+            href="tel:+525534137179"
+            aria-label="Llamar al 55 3413 7179"
+            title="Llamar"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              width="17"
+              height="17"
+            >
+              <path
+                d="M6.6 10.8a15.7 15.7 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.2.6 3.4.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4.2c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.3.6 3.4.1.4 0 .8-.3 1.1l-2.2 2.1Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+
+          <span>55 3413 7179</span>
+
+        </div>
+
+        </div>
+      `;
+
+      siteTopbar.insertAdjacentElement(
+        "beforebegin",
+        contactStrip,
+      );
+    }
+
+
+    /*
+     * Accesos compactos para móvil.
+     */
+    if (!siteNav.querySelector(".mobile-contact-actions")) {
+      const mobileContactActions = document.createElement("div");
+
+      mobileContactActions.className = "mobile-contact-actions";
+
+      mobileContactActions.innerHTML = `
+
+        <!-- WhatsApp -->
+
+        <details class="mobile-contact-menu">
+
+          <summary
+            class="mobile-contact-link"
+            aria-label="Elegir número de WhatsApp"
+            title="WhatsApp"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+            >
+              <path
+                d="M12 2a9.7 9.7 0 0 0-8.3 14.7L2.4 22l5.4-1.4A9.8 9.8 0 1 0 12 2Zm0 17.8a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.1-.2-.3A8 8 0 1 1 12 19.8Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.7-2.4-1.3-3.3-2.9-.3-.4.3-.4.8-1.4.1-.2 0-.4 0-.5l-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 5 4.3.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1-.1-.1-.3-.2-.6-.3Z"
+                fill="currentColor"
+              />
+            </svg>
+          </summary>
+
+          <div class="mobile-contact-popover">
+
+            <span class="mobile-contact-popover-title">
+              WhatsApp
+            </span>
+
+            <a
+              href="https://wa.me/528332395885"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              833 239 5885
+            </a>
+
+            <a
+              href="https://wa.me/525534137179"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              55 3413 7179
+            </a>
+
+          </div>
+
+        </details>
+
+
+        <!-- Llamadas -->
+
+        <details class="mobile-contact-menu">
+
+          <summary
+            class="mobile-contact-link"
+            aria-label="Elegir número para llamar"
+            title="Llamar"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+            >
+              <path
+                d="M6.6 10.8a15.7 15.7 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.2.6 3.4.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4.2c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.3.6 3.4.1.4 0 .8-.3 1.1l-2.2 2.1Z"
+                fill="currentColor"
+              />
+            </svg>
+          </summary>
+
+          <div class="mobile-contact-popover">
+
+            <span class="mobile-contact-popover-title">
+              Llamar
+            </span>
+
+            <a href="tel:+528332395885">
+              833 239 5885
+            </a>
+
+            <a href="tel:+525534137179">
+              55 3413 7179
+            </a>
+
+          </div>
+
+        </details>
+
+
+        <!-- Correo -->
+
+        <a
+          class="mobile-contact-link"
+          href="mailto:ventas@flowrecia.com"
+          aria-label="Enviar correo a ventas@flowrecia.com"
+          title="ventas@flowrecia.com"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+          >
+            <path
+              d="M3 5h18v14H3V5Zm1.8 1.8L12 12.1l7.2-5.3H4.8ZM4.5 17.5h15V8.4L12 13.9 4.5 8.4v9.1Z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+
+      `;
+
+      const navLinksElement =
+        siteNav.querySelector(".nav-links");
+
+      if (navLinksElement) {
+        siteNav.insertBefore(
+          mobileContactActions,
+          navLinksElement,
+        );
+const mobileContactMenus =
+  mobileContactActions.querySelectorAll(".mobile-contact-menu");
+
+mobileContactMenus.forEach((menu) => {
+  menu.addEventListener("toggle", () => {
+    if (!menu.open) return;
+
+    mobileContactMenus.forEach((otherMenu) => {
+      if (otherMenu !== menu) {
+        otherMenu.removeAttribute("open");
+      }
+    });
+  });
+});
+
+document.addEventListener("click", (event) => {
+  if (mobileContactActions.contains(event.target)) return;
+
+  mobileContactMenus.forEach((menu) => {
+    menu.removeAttribute("open");
+  });
+});
+      }
+    }
+  }
+
+
+
+
   /*
    * =========================================================
    * NAVEGACIÓN PRINCIPAL Y MENÚ MÓVIL

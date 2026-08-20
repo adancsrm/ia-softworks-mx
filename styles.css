@@ -906,9 +906,7 @@ a {
   grid-template-columns: 1fr;
   gap: 16px;
 }
-.form-shell > aside.panel {
-  display: none;
-}
+
 form {
   display: grid;
   gap: 14px;
@@ -1149,11 +1147,7 @@ button:disabled {
   box-shadow: 0 20px 48px rgba(217, 119, 87, 0.38);
   transform: translateY(-2px);
 }
-/* La información de contacto del cierre se omite en todas las páginas.
-   Los formularios permanecen visibles en sus secciones independientes. */
-section.section-xl#contacto {
-  display: none;
-}
+
 footer {
   padding: 26px 0 36px;
   color: var(--muted);

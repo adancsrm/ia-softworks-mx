@@ -46,7 +46,7 @@ aprobaciones ni propagación del dominio.
 | Configurar dominio y cuenta del hosting | 45 min | Acceso a BanaHosting/cPanel y dominio definitivo |
 | Crear las cuatro cuentas de correo del staff | 1–2 h | Dominio activo y acceso al servicio de correo |
 | Verificar dominio en Resend y crear la clave de producción | 30–60 min más propagación DNS | Acceso DNS y Resend |
-| Crear `api/config.php` en el servidor | 15 min | Claves de Resend y Gemini |
+| Crear `api/config.php` en el servidor | 15 min | Claves de Resend y Claude (Anthropic) |
 | Publicar y probar formulario, correo, mapas, privacidad y móvil | 1 h | Sitio accesible por HTTPS |
 | Instalar Google Tag Manager, Analytics, Ads y Consent Mode v2 | 2–3 h | IDs definitivos y sitio publicado |
 | Crear estrategia de palabras clave y campaña de Google Ads | 6–8 h | Dominio, medición y oferta comercial validados |

@@ -52,3 +52,32 @@ aprobaciones ni propagación del dominio.
 | Crear estrategia de palabras clave y campaña de Google Ads | 6–8 h | Dominio, medición y oferta comercial validados |
 | Evaluar animaciones Canvas adicionales | 3–5 h | Sólo si se aprueba añadir movimiento después de revisar rendimiento y accesibilidad |
 | Diseñar folleto y preparar PDF para impresión | 5–7 h | Contenido, dominio y datos de contacto definitivos |
+
+
+## Auditoría SEO 2026 — Factores rojos
+
+- [x] SEO-01 Base visual SEO
+  - Se agregaron estilos reutilizables para contenido editorial, tabla de contenidos, fecha de actualización, FAQ, fuentes, breadcrumbs, video responsive y testimonios.
+- [x] SEO-02 Contenido piloto Sitios Web
+- [x] SEO-03 Contenido páginas de servicio
+  - [x] SEO-03A Google Ads
+  - [x] SEO-03B Campañas publicitarias
+  - [x] SEO-03C Redes sociales
+  - [x] SEO-03D Chatbots IA
+  - [x] SEO-03E Agentes online
+  - [x] SEO-03F Plataforma de cotización
+  - [x] SEO-03G Tienda en línea
+  - [x] SEO-03H Facturación
+  - [x] SEO-03I Automatización
+  - [x] SEO-03J Consultoría
+- [ ] SEO-04 Reducir contenido repetido
+- [ ] SEO-05 Breadcrumbs
+- [ ] SEO-06 Schema.org
+- [ ] SEO-07 YouTube
+- [ ] SEO-08 Reseñas
+- [ ] SEO-09 LinkedIn
+- [ ] SEO-10 Facebook
+- [ ] SEO-11 X
+- [ ] SEO-12 Blog
+- [ ] SEO-13 Comentarios
+- [ ] SEO-14 QA y reauditoría

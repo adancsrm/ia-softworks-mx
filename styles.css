@@ -164,6 +164,191 @@ a {
   color: var(--muted);
   font-size: 1.03rem;
 }
+
+/* =========================================================
+   Barra superior de contacto
+   ========================================================= */
+
+.contact-strip {
+  position: relative;
+  z-index: 40;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+  background: #eee9e2;
+}
+
+.contact-strip-inner {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 28px;
+}
+
+.contact-strip-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #4d4a45;
+  font-size: 0.82rem;
+  font-weight: 650;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.contact-strip-link svg {
+  flex: 0 0 auto;
+  color: var(--primary);
+}
+
+.contact-strip-link:hover,
+.contact-strip-link:focus-visible {
+  color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.contact-strip-link:focus-visible {
+  outline: 2px solid rgba(217, 119, 87, 0.35);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.contact-strip-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #4d4a45;
+  font-size: 0.82rem;
+  font-weight: 650;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.contact-action-icon {
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 27px;
+  border-radius: 8px;
+  color: var(--primary);
+  transition:
+    color 0.18s ease,
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.contact-action-icon:hover,
+.contact-action-icon:focus-visible {
+  color: var(--primary-dark);
+  background: rgba(217, 119, 87, 0.1);
+  transform: translateY(-1px);
+}
+
+.contact-action-icon:focus-visible {
+  outline: 2px solid rgba(217, 119, 87, 0.3);
+  outline-offset: 2px;
+}
+
+/* Accesos de contacto dentro del encabezado móvil */
+
+.mobile-contact-actions {
+  display: none;
+  align-items: center;
+  gap: 6px;
+}
+
+.mobile-contact-link {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 36px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  color: var(--primary-dark);
+  background: rgba(255, 255, 255, 0.72);
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.mobile-contact-link:hover,
+.mobile-contact-link:focus-visible {
+  color: var(--primary-dark);
+  border-color: rgba(217, 119, 87, 0.4);
+  background: rgba(217, 119, 87, 0.1);
+  transform: translateY(-1px);
+}
+
+.mobile-contact-link:focus-visible {
+  outline: 2px solid rgba(217, 119, 87, 0.3);
+  outline-offset: 2px;
+}
+
+.mobile-contact-menu {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-contact-menu > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.mobile-contact-menu > summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-contact-popover {
+  position: absolute;
+  z-index: 100;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 180px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 14px 34px rgba(17, 17, 17, 0.14);
+}
+
+.mobile-contact-popover-title {
+  display: block;
+  padding: 7px 10px 5px;
+  color: #77716a;
+  font-size: 0.72rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.mobile-contact-popover a {
+  display: block;
+  padding: 9px 10px;
+  border-radius: 9px;
+  color: #25221f;
+  font-size: 0.86rem;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.mobile-contact-popover a:hover,
+.mobile-contact-popover a:focus-visible {
+  color: var(--primary-dark);
+  background: rgba(217, 119, 87, 0.09);
+}
+
+.mobile-contact-popover a:focus-visible {
+  outline: 2px solid rgba(217, 119, 87, 0.25);
+  outline-offset: 1px;
+}
+
 .topbar {
   position: sticky;
   top: 0;
@@ -1002,6 +1187,18 @@ footer {
   }
 }
 @media (max-width: 1180px) {
+    .contact-strip {
+    display: none;
+  }
+
+  .mobile-contact-actions {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .mobile-nav-toggle {
+    margin-left: 0;
+  }
   html {
     scroll-padding-top: 76px;
   }
@@ -1084,6 +1281,34 @@ footer {
   }
 }
 @media (max-width: 560px) {
+    .brand img {
+    width: 132px;
+  }
+
+  .brand-name small {
+    font-size: 0.68rem;
+  }
+
+  .mobile-contact-actions {
+    gap: 4px;
+  }
+
+  .mobile-contact-link {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+    border-radius: 10px;
+  }
+
+  .mobile-contact-link svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mobile-nav-toggle {
+    width: 38px;
+    height: 38px;
+  }
   .container {
     width: min(calc(100% - 20px), var(--max));
   }
@@ -1195,4 +1420,582 @@ footer {
   display: block;
   border-radius: 28px;
   min-height: 360px;
+}
+/* =========================================================
+   SEO 2026 — Componentes de contenido
+   Reutilizados en páginas de servicios, blog y páginas internas.
+   ========================================================= */
+
+/* Contenedor principal para contenido editorial largo */
+.content-wrap {
+  width: min(100%, 920px);
+  margin: 0 auto;
+}
+
+/* Fecha y metadatos del contenido */
+.content-meta {
+  width: min(100%, 920px);
+  margin: 0 auto 24px;
+  color: var(--muted);
+  font-family: "Anthropic Sans", Arial, sans-serif;
+  font-size: 0.9rem;
+}
+
+.content-meta p {
+  margin: 0;
+}
+
+.content-meta time {
+  color: var(--text);
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   Tabla de contenidos
+   ========================================================= */
+
+.page-toc {
+  width: min(100%, 920px);
+  margin: 0 auto 42px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 12px 30px rgba(17, 17, 17, 0.04);
+}
+
+.page-toc strong {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--text);
+  font-family: "Anthropic Sans", Arial, sans-serif;
+  font-size: 1rem;
+}
+
+.page-toc ul {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.page-toc li {
+  color: var(--muted);
+}
+
+.page-toc a {
+  color: var(--primary-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.page-toc a:hover,
+.page-toc a:focus-visible {
+  color: var(--primary);
+}
+
+
+/* =========================================================
+   Contenido editorial SEO
+   ========================================================= */
+
+.content-section {
+  width: min(100%, 920px);
+  margin: 0 auto;
+  padding: 34px 0;
+}
+
+.content-section + .content-section {
+  border-top: 1px solid var(--border);
+}
+
+.content-section h2 {
+  margin: 0 0 18px;
+  font-size: clamp(1.8rem, 3.4vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.content-section h3 {
+  margin: 28px 0 12px;
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.content-section p {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.content-section ul,
+.content-section ol {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 22px;
+  padding-left: 24px;
+  color: var(--muted);
+  font-size: 1.03rem;
+  line-height: 1.65;
+}
+
+.content-section strong {
+  color: var(--text);
+}
+
+.content-section a {
+  color: var(--primary-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.content-section a:hover,
+.content-section a:focus-visible {
+  color: var(--primary);
+}
+
+
+/* =========================================================
+   Preguntas frecuentes
+   ========================================================= */
+
+.faq-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.faq-item {
+  padding: 22px 24px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.faq-item h3 {
+  margin: 0 0 10px;
+  font-size: 1.18rem;
+  line-height: 1.25;
+}
+
+.faq-item p {
+  margin: 0;
+}
+
+
+/* =========================================================
+   Fuentes y referencias
+   ========================================================= */
+
+.sources-list {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding-left: 22px;
+}
+
+.sources-list li {
+  color: var(--muted);
+}
+
+.sources-list a {
+  color: var(--primary-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sources-list a:hover,
+.sources-list a:focus-visible {
+  color: var(--primary);
+}
+
+
+/* =========================================================
+   Breadcrumbs
+   ========================================================= */
+
+.breadcrumbs {
+  padding: 16px 0 0;
+  color: var(--muted);
+  font-family: "Anthropic Sans", Arial, sans-serif;
+  font-size: 0.88rem;
+}
+
+.breadcrumbs ol {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumbs li:not(:last-child)::after {
+  content: "/";
+  color: rgba(20, 20, 19, 0.35);
+}
+
+.breadcrumbs a {
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.breadcrumbs a:hover,
+.breadcrumbs a:focus-visible {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.breadcrumbs [aria-current="page"] {
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   Video responsive / YouTube
+   ========================================================= */
+
+.video-embed {
+  position: relative;
+  width: 100%;
+  margin: 24px 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: var(--text);
+  box-shadow: 0 16px 40px rgba(17, 17, 17, 0.08);
+  aspect-ratio: 16 / 9;
+}
+
+.video-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+/* =========================================================
+   Testimonios y reputación
+   ========================================================= */
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 12px 30px rgba(17, 17, 17, 0.04);
+}
+
+.testimonial-card blockquote {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.testimonial-card p {
+  margin: auto 0 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.testimonial-card strong {
+  color: var(--text);
+}
+
+
+/* =========================================================
+   Responsive para componentes SEO
+   ========================================================= */
+
+@media (max-width: 860px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .content-section {
+    padding: 28px 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-toc {
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 32px;
+  }
+
+  .content-section h2 {
+    font-size: clamp(1.7rem, 9vw, 2.3rem);
+  }
+
+  .content-section p,
+  .content-section ul,
+  .content-section ol {
+    font-size: 1rem;
+  }
+
+  .faq-item {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .breadcrumbs {
+    font-size: 0.82rem;
+  }
+
+  .video-embed {
+    border-radius: 20px;
+  }
+}
+/* =========================================================
+   SEO-02 — Contenido progresivo / acordeones
+   ========================================================= */
+
+.seo-details-section {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.seo-detail {
+  width: min(100%, 920px);
+  margin: 0 auto 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.82);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.seo-detail:hover {
+  border-color: rgba(201, 84, 28, 0.28);
+}
+
+.seo-detail[open] {
+  box-shadow: 0 14px 34px rgba(17, 17, 17, 0.05);
+}
+
+.seo-detail summary,
+.page-toc summary,
+.faq-item summary {
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  color: var(--text);
+  font-family: "Anthropic Sans", Arial, sans-serif;
+  font-weight: 700;
+}
+
+.seo-detail summary::-webkit-details-marker,
+.page-toc summary::-webkit-details-marker,
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.seo-detail > summary {
+  padding: 22px 56px 22px 24px;
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+
+.seo-detail summary::after,
+.page-toc summary::after,
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 22px;
+  transform: translateY(-50%);
+  color: var(--primary-dark);
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.seo-detail[open] > summary::after,
+.page-toc[open] > summary::after,
+.faq-item[open] > summary::after {
+  content: "−";
+}
+
+.seo-detail-content {
+  padding: 0 24px 24px;
+}
+
+.seo-detail-content p {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.seo-detail-content p:last-child {
+  margin-bottom: 0;
+}
+
+.seo-detail-content ul,
+.seo-detail-content ol {
+  display: grid;
+  gap: 10px;
+  margin: 6px 0 18px;
+  padding-left: 24px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.seo-detail-content strong {
+  color: var(--text);
+}
+
+
+/* Tabla de contenidos plegable */
+
+.page-toc > summary {
+  padding-right: 42px;
+}
+
+.page-toc[open] > summary {
+  margin-bottom: 14px;
+}
+
+
+/* FAQ plegable */
+
+.faq-item {
+  display: block;
+}
+
+.faq-item > summary {
+  padding-right: 42px;
+}
+
+.faq-item[open] > summary {
+  margin-bottom: 12px;
+}
+
+.faq-item > p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+
+/* Scroll al navegar mediante tabla de contenidos */
+
+#que-incluye,
+#proceso-desarrollo,
+#seo-desarrollo,
+#tipos-sitios,
+#preguntas-frecuentes,
+#fuentes,
+#que-incluye-google-ads,
+#proceso-google-ads,
+#automatizacion-google-ads,
+#metricas-google-ads,
+#preguntas-google-ads,
+#fuentes-google-ads,
+#que-incluyen-campanas,
+#segmentacion-campanas,
+#automatizacion-campanas,
+#metricas-campanas,
+#preguntas-campanas,
+#fuentes-campanas,
+#estrategia-redes,
+#contenido-redes,
+#automatizacion-redes,
+#metricas-redes,
+#preguntas-redes,
+#fuentes-redes,
+#que-es-chatbot-ia,
+#informacion-chatbot,
+#captacion-chatbot,
+#integraciones-chatbot,
+#preguntas-chatbots,
+#fuentes-chatbots,
+#que-es-agente-ia,
+#tareas-agente-ia,
+#integraciones-agente-ia,
+#control-agente-ia,
+#preguntas-agentes,
+#fuentes-agentes,
+#funcion-plataforma-cotizacion,
+#reglas-cotizacion,
+#flujo-cotizacion,
+#integraciones-cotizacion,
+#preguntas-plataforma-cotizacion,
+#fuentes-plataforma-cotizacion,
+#catalogo-tienda-online,
+#compra-tienda-online,
+#pedidos-inventario-tienda,
+#integraciones-tienda-online,
+#preguntas-tienda-online,
+#fuentes-tienda-online,
+#recepcion-facturas,
+#extraccion-datos-facturas,
+#validacion-facturas,
+#flujo-facturacion,
+#preguntas-facturacion,
+#fuentes-facturacion,
+#proceso-automatizable,
+#diseno-flujo-automatizacion,
+#disparadores-automatizacion,
+#control-medicion-automatizacion,
+#preguntas-automatizacion,
+#fuentes-automatizacion,
+#diagnostico-consultoria-ia,
+#priorizacion-consultoria-ia,
+#piloto-consultoria-ia,
+#medicion-consultoria-ia,
+#preguntas-consultoria-ia,
+#fuentes-consultoria-ia {
+  scroll-margin-top: 110px;
+}
+
+
+@media (max-width: 560px) {
+
+  .seo-detail {
+    border-radius: 18px;
+  }
+
+  .seo-detail > summary {
+    padding: 20px 50px 20px 20px;
+    font-size: 1rem;
+  }
+
+  .seo-detail-content {
+    padding: 0 20px 20px;
+  }
+
+  .seo-detail-content p {
+    font-size: 0.98rem;
+  }
+
 }

@@ -616,14 +616,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         </div>
       `;
-
-      siteTopbar.insertAdjacentElement(
-        "beforebegin",
-        contactStrip,
-      );
+      
+      siteTopbar.prepend(contactStrip);
     }
 
-
+    
     /*
      * Accesos compactos para móvil.
      */

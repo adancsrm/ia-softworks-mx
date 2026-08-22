@@ -1184,7 +1184,6 @@ footer {
     .contact-strip {
     display: none;
   }
-
   .mobile-contact-actions {
     display: flex;
     margin-left: auto;
@@ -1384,11 +1383,13 @@ footer {
 }
 
 
-/* Heading replacements used for visual titles that should not count as SEO H2/H3. */
+/* Títulos visuales reutilizables.
+   El peso se unifica con la jerarquía del sitio sin alterar
+   el tamaño propio de formularios, páginas legales o tarjetas. */
 .heading-h2 {
   font-size: clamp(1.6rem, 3vw, 2.6rem);
   line-height: 1.08;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.03em;
   margin: 0 0 14px;
   color: var(--text);
@@ -1396,7 +1397,7 @@ footer {
 .heading-h3 {
   font-size: 1.05rem;
   line-height: 1.25;
-  font-weight: 800;
+  font-weight: 500;
   margin: 0 0 10px;
   color: var(--text);
 }
@@ -1428,8 +1429,8 @@ footer {
 
 /* Fecha y metadatos del contenido */
 .content-meta {
-  width: min(100%, 920px);
-  margin: 0 auto 24px;
+  width: 100%;
+  margin: 0 0 24px;
   color: var(--muted);
   font-family: "Anthropic Sans", Arial, sans-serif;
   font-size: 0.9rem;
@@ -1450,8 +1451,8 @@ footer {
    ========================================================= */
 
 .page-toc {
-  width: min(100%, 920px);
-  margin: 0 auto 42px;
+  width: 100%;
+  margin: 0 0 42px;
   padding: 24px;
   border: 1px solid var(--border);
   border-radius: 24px;
@@ -1497,8 +1498,8 @@ footer {
    ========================================================= */
 
 .content-section {
-  width: min(100%, 920px);
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   padding: 34px 0;
 }
 
@@ -1511,6 +1512,7 @@ footer {
   font-size: clamp(1.8rem, 3.4vw, 3rem);
   line-height: 1.05;
   letter-spacing: -0.045em;
+  font-weight: 500;
 }
 
 .content-section h3 {
@@ -1518,6 +1520,7 @@ footer {
   font-size: clamp(1.25rem, 2vw, 1.65rem);
   line-height: 1.15;
   letter-spacing: -0.025em;
+  font-weight: 500;
 }
 
 .content-section p {
@@ -1577,6 +1580,7 @@ footer {
   margin: 0 0 10px;
   font-size: 1.18rem;
   line-height: 1.25;
+  font-weight: 500;
 }
 
 .faq-item p {
@@ -1775,12 +1779,12 @@ footer {
    ========================================================= */
 
 .seo-details-section {
-  background: rgba(255, 255, 255, 0.34);
+  background: transparent;
 }
 
 .seo-detail {
-  width: min(100%, 920px);
-  margin: 0 auto 14px;
+  width: 100%;
+  margin: 0 0 14px;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 22px;
@@ -1806,7 +1810,7 @@ footer {
   list-style: none;
   color: var(--text);
   font-family: "Anthropic Sans", Arial, sans-serif;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .seo-detail summary::-webkit-details-marker,
